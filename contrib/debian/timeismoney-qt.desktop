@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=TimeIsMoney
+Comment=TimeIsMoney P2P Cryptocurrency
+Comment[fr]=TimeIsMoney, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=TimeIsMoney, eşten eşe kriptografik sanal para birimi
+Exec=timeismoney-qt %u
+Terminal=false
+Type=Application
+Icon=timeismoney128
+MimeType=x-scheme-handler/timeismoney;
+Categories=Office;Finance;

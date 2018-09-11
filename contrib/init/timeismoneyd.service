@@ -1,0 +1,26 @@
+[Unit]
+Description=TimeIsMoney's distributed currency daemon
+After=network.target
+
+[Service]
+User=timeismoney
+Group=timeismoney
+
+Type=forking
+PIDFile=/var/lib/timeismoneyd/timeismoneyd.pid
+
+ExecStart=/usr/bin/timeismoneyd -daemon -pid=/var/lib/timeismoneyd/timeismoneyd.pid \
+          -conf=/etc/timeismoney/timeismoney.conf -datadir=/var/lib/timeismoneyd
+
+ExecStop=-/usr/bin/timeismoney-cli -conf=/etc/timeismoney/timeismoney.conf \
+         -datadir=/var/lib/timeismoneyd stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target
