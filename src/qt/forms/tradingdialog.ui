@@ -181,7 +181,7 @@
       <string>Asks</string>
      </property>
     </widget>
-    <widget class="QLabel" name="TIMSupply">
+    <widget class="QLabel" name="TimeIsMoneySupply">
      <property name="geometry">
       <rect>
        <x>540</x>
@@ -197,7 +197,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="TIMDemand">
+    <widget class="QLabel" name="TimeIsMoneyDemand">
      <property name="geometry">
       <rect>
        <x>160</x>
@@ -432,7 +432,7 @@
     <attribute name="title">
      <string>Buy</string>
     </attribute>
-    <widget class="QPushButton" name="BuyTIM">
+    <widget class="QPushButton" name="BuyTimeIsMoney">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -442,7 +442,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Buy TIM</string>
+      <string>Buy TimeIsMoney</string>
      </property>
      <property name="icon">
       <iconset resource="../timeismoney.qrc">
@@ -512,7 +512,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>TIM</string>
+      <string>TimeIsMoney</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_5">
@@ -1704,10 +1704,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>TIM</string>
+      <string>TimeIsMoney</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="UnitsInputTIM">
+    <widget class="QLineEdit" name="UnitsInputTimeIsMoney">
      <property name="geometry">
       <rect>
        <x>310</x>
@@ -1741,7 +1741,7 @@
       </font>
      </property>
     </widget>
-    <widget class="QPushButton" name="SellTIMBTN">
+    <widget class="QPushButton" name="SellTimeIsMoneyBTN">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -1751,7 +1751,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Sell TIM</string>
+      <string>Sell TimeIsMoney</string>
      </property>
      <property name="icon">
       <iconset resource="../timeismoney">
@@ -1777,12 +1777,12 @@
          </font>
         </property>
         <property name="text">
-         <string>TIM Available:</string>
+         <string>TimeIsMoney Available:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="TIMAvailableLabel">
+       <widget class="QLabel" name="TimeIsMoneyAvailableLabel">
         <property name="palette">
          <palette>
           <active>
@@ -2213,7 +2213,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="labelTIM">
+       <widget class="QLabel" name="labelTimeIsMoney">
         <property name="font">
          <font>
           <weight>75</weight>
@@ -2221,7 +2221,7 @@
          </font>
         </property>
         <property name="text">
-         <string>TIM</string>
+         <string>TimeIsMoney</string>
         </property>
        </widget>
       </item>
@@ -2733,7 +2733,7 @@
       <string>TextLabel</string>
      </property>
     </widget>
-    <widget class="QLabel" name="TIMBalanceLabel">
+    <widget class="QLabel" name="TimeIsMoneyBalanceLabel">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -2762,7 +2762,7 @@
       </font>
      </property>
      <property name="text">
-      <string>TIM Balance:</string>
+      <string>TimeIsMoney Balance:</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_12">
@@ -2784,7 +2784,7 @@
       <string>BTC Balance:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="TIMAvailableLabel_2">
+    <widget class="QLabel" name="TimeIsMoneyAvailableLabel_2">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -2813,7 +2813,7 @@
       </font>
      </property>
      <property name="text">
-      <string>TIM Available:</string>
+      <string>TimeIsMoney Available:</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_14">
@@ -2832,10 +2832,10 @@
       </font>
      </property>
      <property name="text">
-      <string>TIM Pending:</string>
+      <string>TimeIsMoney Pending:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="TIMPendingLabel">
+    <widget class="QLabel" name="TimeIsMoneyPendingLabel">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -2928,7 +2928,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Bittrex TIM Deposit Address:</string>
+      <string>Bittrex TimeIsMoney Deposit Address:</string>
      </property>
     </widget>
     <widget class="QPushButton" name="GenDepositBTN">

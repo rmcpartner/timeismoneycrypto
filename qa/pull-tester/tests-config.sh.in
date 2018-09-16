@@ -13,4 +13,3 @@ EXEEXT="@EXEEXT@"
 
 REAL_BITCOIND="$BUILDDIR/src/timeismoneyd${EXEEXT}"
 REAL_BITCOINCLI="$BUILDDIR/src/timeismoney-cli${EXEEXT}"
-

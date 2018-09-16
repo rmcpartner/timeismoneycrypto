@@ -1,7 +1,8 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2015-2017 The PIVX developers 
+// Copyright (c) 2015-2017 The ALQO developers
 // Copyright (c) 2017-2018 The TimeIsMoney developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -107,21 +108,22 @@ std::string to_internal(const std::string&);
 using namespace std;
 
 //TimeIsMoney only features
+
 bool fMasterNode = false;
 string strMasterNodePrivKey = "";
 string strMasterNodeAddr = "";
 bool fLiteMode = false;
-bool fEnableSwiftTX = true;
-int nSwiftTXDepth = 5;
-int nObfuscationRounds = 2;
-int nAnonymizeTimeIsMoneyAmount = 1000;
+bool fEnableInstantX = true;
+int nInstantXDepth = 5;
+int nDarksendRounds = 2;
+int nAnonymizeAmount = 1000;
 int nLiquidityProvider = 0;
 /** Spork enforcement enabled time */
 int64_t enforceMasternodePaymentsTime = 4085657524;
 bool fSucessfullyLoaded = false;
-bool fEnableObfuscation = false;
-/** All denominations used by obfuscation */
-std::vector<int64_t> obfuScationDenominations;
+bool fEnableDarksend = false;
+/** All denominations used by Darksend */
+std::vector<int64_t> DarKsendDenominations;
 string strBudgetMode = "";
 
 map<string, string> mapArgs;
@@ -234,8 +236,8 @@ bool LogAcceptCategory(const char* category)
             // thread_specific_ptr automatically deletes the set when the thread ends.
             // "timeismoney" is a composite category enabling all TimeIsMoney-related debug output
             if (ptrCategory->count(string("timeismoney"))) {
-                ptrCategory->insert(string("obfuscation"));
-                ptrCategory->insert(string("swifttx"));
+                ptrCategory->insert(string("Darksend"));
+                ptrCategory->insert(string("Instantx"));
                 ptrCategory->insert(string("masternode"));
                 ptrCategory->insert(string("mnpayments"));
                 ptrCategory->insert(string("mnbudget"));
@@ -289,16 +291,20 @@ int LogPrintStr(const std::string& str)
     return ret;
 }
 
-static void InterpretNegativeSetting(string name, map<string, string>& mapSettingsRet)
+/** Interpret string as boolean, for argument parsing */
+static bool InterpretBool(const std::string& strValue)
 {
-    // interpret -nofoo as -foo=0 (and -nofoo=0 as -foo=1) as long as -foo not set
-    if (name.find("-no") == 0) {
-        std::string positive("-");
-        positive.append(name.begin() + 3, name.end());
-        if (mapSettingsRet.count(positive) == 0) {
-            bool value = !GetBoolArg(name, false);
-            mapSettingsRet[positive] = (value ? "1" : "0");
-        }
+    if (strValue.empty())
+        return true;
+    return (atoi(strValue) != 0);
+}
+
+/** Turn -noX into -X=0 */
+static void InterpretNegativeSetting(std::string& strKey, std::string& strValue)
+{
+    if (strKey.length()>3 && strKey[0]=='-' && strKey[1]=='n' && strKey[2]=='o') {
+        strKey = "-" + strKey.substr(3);
+        strValue = InterpretBool(strValue) ? "0" : "1";
     }
 }
 
@@ -328,15 +334,10 @@ void ParseParameters(int argc, const char* const argv[])
         // If both --foo and -foo are set, the last takes effect.
         if (str.length() > 1 && str[1] == '-')
             str = str.substr(1);
+        InterpretNegativeSetting(str, strValue);
 
         mapArgs[str] = strValue;
         mapMultiArgs[str].push_back(strValue);
-    }
-
-    // New 0.6 features:
-    BOOST_FOREACH (const PAIRTYPE(string, string) & entry, mapArgs) {
-        // interpret -nofoo as -foo=0 (and -nofoo=0 as -foo=1) as long as -foo not set
-        InterpretNegativeSetting(entry.first, mapArgs);
     }
 }
 
@@ -349,33 +350,15 @@ std::string GetArg(const std::string& strArg, const std::string& strDefault)
 
 int64_t GetArg(const std::string& strArg, int64_t nDefault)
 {
-    if (mapArgs.count(strArg)) {
-        int64_t n;
-        try {
-            n = std::stoi(mapArgs[strArg]);
-        } catch (const std::exception& e) {
-            return nDefault;
-        }
-
-        return n;
-    }
+    if (mapArgs.count(strArg))
+        return atoi64(mapArgs[strArg]);
     return nDefault;
 }
 
 bool GetBoolArg(const std::string& strArg, bool fDefault)
 {
-    if (mapArgs.count(strArg)) {
-        if (mapArgs[strArg].empty())
-            return true;
-
-        int n;
-        try {
-            n = std::stoi(mapArgs[strArg]);
-        } catch (const std::exception& e) {
-            return fDefault;
-        }
-        return n;
-    }
+    if (mapArgs.count(strArg))
+        return InterpretBool(mapArgs[strArg]);
     return fDefault;
 }
 
@@ -464,16 +447,15 @@ boost::filesystem::path GetDefaultDataDir()
 }
 
 static boost::filesystem::path pathCached;
-static boost::filesystem::path pathCachedNetSpecific;
 static CCriticalSection csPathCached;
 
-const boost::filesystem::path& GetDataDir(bool fNetSpecific)
+const boost::filesystem::path& GetDataDir()
 {
     namespace fs = boost::filesystem;
 
     LOCK(csPathCached);
 
-    fs::path& path = fNetSpecific ? pathCachedNetSpecific : pathCached;
+    fs::path& path = pathCached;
 
     // This can be called during exceptions by LogPrintf(), so we cache the
     // value so we don't have to do memory allocations after that.
@@ -489,8 +471,7 @@ const boost::filesystem::path& GetDataDir(bool fNetSpecific)
     } else {
         path = GetDefaultDataDir();
     }
-    if (fNetSpecific)
-        path /= BaseParams().DataDir();
+    path /= BaseParams().DataDir();
 
     fs::create_directories(path);
 
@@ -500,15 +481,12 @@ const boost::filesystem::path& GetDataDir(bool fNetSpecific)
 void ClearDatadirCache()
 {
     pathCached = boost::filesystem::path();
-    pathCachedNetSpecific = boost::filesystem::path();
 }
 
 boost::filesystem::path GetConfigFile()
 {
     boost::filesystem::path pathConfigFile(GetArg("-conf", "timeismoney.conf"));
-    if (!pathConfigFile.is_complete())
-        pathConfigFile = GetDataDir(false) / pathConfigFile;
-
+    if (!pathConfigFile.is_complete()) pathConfigFile = GetDataDir() / pathConfigFile;
     return pathConfigFile;
 }
 
@@ -537,12 +515,11 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
     for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it) {
         // Don't overwrite existing settings so command line settings override timeismoney.conf
         string strKey = string("-") + it->string_key;
-        if (mapSettingsRet.count(strKey) == 0) {
-            mapSettingsRet[strKey] = it->value[0];
-            // interpret nofoo=1 as foo=0 (and nofoo=0 as foo=1) as long as foo not set)
-            InterpretNegativeSetting(strKey, mapSettingsRet);
-        }
-        mapMultiSettingsRet[strKey].push_back(it->value[0]);
+        string strValue = it->value[0];
+        InterpretNegativeSetting(strKey, strValue);
+        if (mapSettingsRet.count(strKey) == 0)
+            mapSettingsRet[strKey] = strValue;
+        mapMultiSettingsRet[strKey].push_back(strValue);
     }
     // If datadir is changed in .conf file:
     ClearDatadirCache();

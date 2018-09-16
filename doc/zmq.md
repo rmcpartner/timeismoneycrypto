@@ -5,7 +5,7 @@ connections, inter-process communication, and shared-memory,
 providing various message-oriented semantics such as publish/subscribe,
 request/reply, and push/pull.
 
-The AMS Core daemon can be configured to act as a trusted "border
+The TimeIsMoney Core daemon can be configured to act as a trusted "border
 router", implementing the timeismoney wire protocol and relay, making
 consensus decisions, maintaining the local blockchain database,
 broadcasting locally generated transactions into the network, and
@@ -33,7 +33,7 @@ buffering or reassembly.
 
 ## Prerequisites
 
-The ZeroMQ feature in AMS Core requires ZeroMQ API version 4.x or
+The ZeroMQ feature in TimeIsMoney Core requires ZeroMQ API version 4.x or
 newer. Typically, it is packaged by distributions as something like
 *libzmq3-dev*. The C++ wrapper for ZeroMQ is *not* needed.
 
@@ -45,7 +45,7 @@ operation.
 
 By default, the ZeroMQ feature is automatically compiled in if the
 necessary prerequisites are found.  To disable, use --disable-zmq
-during the *configure* step of building bitcoind:
+during the *configure* step of building timeismoneyd:
 
     $ ./configure --disable-zmq (other options)
 
@@ -69,7 +69,7 @@ address. The same address can be used in more than one notification.
 For instance:
 
     $ timeismoneyd -zmqpubhashtx=tcp://127.0.0.1:28332 \
-               -zmqpubrawtx=ipc:///tmp/timeismoneyd.tx.raw
+            -zmqpubrawtx=ipc:///tmp/timeismoneyd.tx.raw
 
 Each PUB notification has a topic and body, where the header
 corresponds to the notification type. For instance, for the

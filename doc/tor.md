@@ -1,5 +1,5 @@
 TOR SUPPORT IN TimeIsMoney
-=======================
+===================
 
 It is possible to run TimeIsMoney as a Tor hidden service, and connect to such services.
 
@@ -9,12 +9,12 @@ may not. In particular, the Tor Browser Bundle defaults to listening on a random
 port. See [Tor Project FAQ:TBBSocksPort](https://www.torproject.org/docs/faq.html.en#TBBSocksPort)
 for how to properly configure Tor.
 
-
 Run TimeIsMoney behind a Tor proxy
-----------------------------------
+---------------------------
 
 The first step is running TimeIsMoney behind a Tor proxy. This will already make all
 outgoing connections be anonymized, but more is possible.
+
 ```
 -proxy=ip:port  Set the proxy server. If SOCKS5 is selected (default), this proxy
                 server will be used to try to reach .onion addresses as well.
@@ -37,21 +37,24 @@ outgoing connections be anonymized, but more is possible.
 
 An example how to start the client if the Tor proxy is running on local host on
 port 9050 and only allows .onion nodes to connect:
+
 ```
 ./timeismoneyd -onion=127.0.0.1:9050 -onlynet=tor -listen=0 -addnode=dnetzj6l4cvo2fxy.onion:989
 ```
 
 In a typical situation, this suffices to run behind a Tor proxy:
+
 ```
 ./timeismoneyd -proxy=127.0.0.1:9050
 ```
 
 Run a TimeIsMoney hidden server
--------------------------------
+------------------------
 
 If you configure your Tor system accordingly, it is possible to make your node also
 reachable from the Tor network. Add these lines to your /etc/tor/torrc (or equivalent
 config file):
+
 ```
 ClientOnly 1
 SOCKSPort 9050
@@ -59,7 +62,7 @@ SOCKSPolicy accept 127.0.0.1/8
 Log notice file /var/log/tor/notices.log
 ControlPort 9051
 HiddenServiceDir /var/lib/tor/dnet/
-HiddenServicePort 989 127.0.0.1:50020
+HiddenServicePort 989 127.0.0.1:11333
 HiddenServiceStatistics 0
 ORPort 9001
 LongLivedPorts 989
@@ -69,9 +72,10 @@ NumEntryGuards 8
 ```
 
 The directory can be different of course, but (both) port numbers should be equal to
-your timeismoneyd's P2P listen port (50020 by default).
+your timeismoneyd's P2P listen port (11333 by default).
+
 ```
--externalip=X   You can tell timeismoney about its publicly reachable address using
+-externalip=X   You can tell TimeIsMoney about its publicly reachable address using
                 this option, and this can be a .onion address. Given the above
                 configuration, you can find your onion address in
                 /var/lib/tor/timeismoney-service/hostname. Onion addresses are given
@@ -91,6 +95,7 @@ your timeismoneyd's P2P listen port (50020 by default).
 ```
 
 In a typical situation, where you're only reachable via Tor, this should suffice:
+
 ```
 ./timeismoneyd -proxy=127.0.0.1:9050 -externalip=dnetzj6l4cvo2fxy.onion:989 -listen
 ```
@@ -98,20 +103,23 @@ In a typical situation, where you're only reachable via Tor, this should suffice
 (obviously, replace the Onion address with your own). If you don't care too much
 about hiding your node, and want to be reachable on IPv4 as well, additionally
 specify:
+
 ```
 ./timeismoneyd ... -discover
 ```
 
-and open port 50020 on your firewall (or use -upnp).
+and open port 11333 on your firewall (or use -upnp).
 
 If you only want to use Tor to reach onion addresses, but not use it as a proxy
 for normal IPv4/IPv6 communication, use:
+
 ```
 ./timeismoneyd -onion=127.0.0.1:9050 -externalip=dnetzj6l4cvo2fxy.onion:989 -discover
 ```
 
 List of known TimeIsMoney Tor relays
-------------------------------------
+-----------------------------
+
 ```
 y5kcscnhpygvvnjn.onion:989
 5bmhtjvn2jvwpiej.onion:989

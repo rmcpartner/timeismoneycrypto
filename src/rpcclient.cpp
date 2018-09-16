@@ -1,7 +1,8 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2015-2017 The PIVX developers 
+// Copyright (c) 2015-2017 The ALQO developers
 // Copyright (c) 2017-2018 The TimeIsMoney developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -98,14 +99,14 @@ static const CRPCConvertParam vRPCConvertParams[] =
         {"mnbudget", 3},
         {"mnbudget", 4},
         {"mnbudget", 6},
-        {"mnbudget", 8},
         {"mnbudgetvoteraw", 1},
         {"mnbudgetvoteraw", 4},
         {"reservebalance", 0},
         {"reservebalance", 1},
         {"setstakesplitthreshold", 0},
         {"autocombinerewards", 0},
-        {"autocombinerewards", 1}};
+        {"autocombinerewards", 1},
+		{"autocombinerewards", 2}};
 
 class CRPCConvertTable
 {

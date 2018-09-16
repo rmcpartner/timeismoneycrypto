@@ -1,6 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2015-2017 The PIVX developers 
+// Copyright (c) 2015-2017 The ALQO developers
 // Copyright (c) 2017-2018 The TimeIsMoney developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -73,14 +74,16 @@ void OptionsModel::Init()
         settings.setValue("fCoinControlFeatures", false);
     fCoinControlFeatures = settings.value("fCoinControlFeatures", false).toBool();
 
-    if (!settings.contains("nObfuscationRounds"))
-        settings.setValue("nObfuscationRounds", 2);
+    /* Removing Darksend - BJK
+    if (!settings.contains("nDarksendRounds"))
+        settings.setValue("nDarksendRounds", 2);
 
-    if (!settings.contains("nAnonymizeTimeIsMoneyAmount"))
-        settings.setValue("nAnonymizeTimeIsMoneyAmount", 1000);
+    if (!settings.contains("nAnonymizeAmount"))
+        settings.setValue("nAnonymizeAmount", 1000);
 
-    nObfuscationRounds = settings.value("nObfuscationRounds").toLongLong();
-    nAnonymizeTimeIsMoneyAmount = settings.value("nAnonymizeTimeIsMoneyAmount").toLongLong();
+    nDarksendRounds = settings.value("nDarksendRounds").toLongLong();
+    nAnonymizeAmount = settings.value("nAnonymizeAmount").toLongLong();
+    */
 
     if (!settings.contains("fShowMasternodesTab"))
         settings.setValue("fShowMasternodesTab", masternodeConfig.getCount());
@@ -145,10 +148,12 @@ void OptionsModel::Init()
     if (!SoftSetArg("-lang", settings.value("language").toString().toStdString()))
         addOverriddenOption("-lang");
 
-    if (settings.contains("nObfuscationRounds"))
-        SoftSetArg("-obfuscationrounds", settings.value("nObfuscationRounds").toString().toStdString());
-    if (settings.contains("nAnonymizeTimeIsMoneyAmount"))
-        SoftSetArg("-anonymizetimeismoneyamount", settings.value("nAnonymizeTimeIsMoneyAmount").toString().toStdString());
+    /* Removing Darksend - BJK
+    if (settings.contains("nDarksendRounds"))
+        SoftSetArg("-Darksendrounds", settings.value("nDarksendRounds").toString().toStdString());
+    if (settings.contains("nAnonymizeAmount"))
+        SoftSetArg("-anonymizeamount", settings.value("nAnonymizeAmount").toString().toStdString());
+    */
 
     language = settings.value("language").toString();
 }
@@ -159,7 +164,7 @@ void OptionsModel::Reset()
 
     // Remove all entries from our QSettings object
     settings.clear();
-    resetSettings = true; // Needed in timeismoney.cpp during shotdown to also remove the window positions
+    resetSettings = true; // Needed in timeismoney.cpp during shutdown to also remove the window positions
 
     // default setting for OptionsModel::StartAtStartup - disabled
     if (GUIUtil::GetStartOnSystemStartup())
@@ -226,10 +231,12 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
             return settings.value("nDatabaseCache");
         case ThreadsScriptVerif:
             return settings.value("nThreadsScriptVerif");
-        case ObfuscationRounds:
-            return QVariant(nObfuscationRounds);
-        case AnonymizeTimeIsMoneyAmount:
-            return QVariant(nAnonymizeTimeIsMoneyAmount);
+        /* Removing Darksend - BJK
+        case DarksendRounds:
+            return QVariant(nDarksendRounds);
+        case AnonymizeAmount:
+            return QVariant(nAnonymizeAmount);
+        */
         case Listen:
             return settings.value("fListen");
         default:
@@ -333,16 +340,18 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
                 setRestartRequired(true);
             }
             break;
-        case ObfuscationRounds:
-            nObfuscationRounds = value.toInt();
-            settings.setValue("nObfuscationRounds", nObfuscationRounds);
-            emit obfuscationRoundsChanged(nObfuscationRounds);
+        /* Removing Darksend - BJK
+        case DarksendRounds:
+            nDarksendRounds = value.toInt();
+            settings.setValue("nDarksendRounds", nDarksendRounds);
+            emit DarksendRoundsChanged(nDarksendRounds);
             break;
-        case AnonymizeTimeIsMoneyAmount:
-            nAnonymizeTimeIsMoneyAmount = value.toInt();
-            settings.setValue("nAnonymizeTimeIsMoneyAmount", nAnonymizeTimeIsMoneyAmount);
-            emit anonymizeTimeIsMoneyAmountChanged(nAnonymizeTimeIsMoneyAmount);
+        case AnonymizeAmount:
+            nAnonymizeAmount = value.toInt();
+            settings.setValue("nAnonymizeAmount", nAnonymizeAmount);
+            emit anonymizeAmountChanged(nAnonymizeAmount);
             break;
+        */
         case CoinControlFeatures:
             fCoinControlFeatures = value.toBool();
             settings.setValue("fCoinControlFeatures", fCoinControlFeatures);

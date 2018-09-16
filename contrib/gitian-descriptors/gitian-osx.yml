@@ -1,5 +1,5 @@
 ---
-name: "timeismoney-osx-2.2"
+name: "timeismoney-osx-2.3"
 enable_cache: true
 suites:
 - "trusty"
@@ -28,8 +28,8 @@ packages:
 - "python-setuptools"
 - "fonts-tuffy"
 remotes:
-- "url": "https://github.com/timeismoney-project/timeismoney.git"
-  "dir": "timeismoney"
+- "url": "https://github.com/timeismoneycoin/timeismoney-core"
+  "dir": "timeismoney-core"
 files:
 - "MacOSX10.11.sdk.tar.gz"
 script: |
@@ -83,7 +83,7 @@ script: |
   create_per-host_faketime_wrappers "2000-01-01 12:00:00"
   export PATH=${WRAP_DIR}:${PATH}
 
-  cd timeismoney
+  cd timeismoney-core
   BASEPREFIX=`pwd`/depends
 
   mkdir -p ${BASEPREFIX}/SDKs

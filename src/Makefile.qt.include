@@ -3,18 +3,21 @@ EXTRA_LIBRARIES += qt/libbitcoinqt.a
 
 # timeismoney qt core #
 QT_TS = \
-  qt/locale/timeismoney_ca.ts \
-  qt/locale/timeismoney_da.ts \
+  qt/locale/timeismoney_bg.ts \
   qt/locale/timeismoney_de.ts \
   qt/locale/timeismoney_en.ts \
-  qt/locale/timeismoney_en_US.ts \
   qt/locale/timeismoney_es.ts \
-  qt/locale/timeismoney_fr_FR.ts \
+  qt/locale/timeismoney_fi.ts \
+  qt/locale/timeismoney_fr.ts \
   qt/locale/timeismoney_it.ts \
   qt/locale/timeismoney_ja.ts \
+  qt/locale/timeismoney_pl.ts \
   qt/locale/timeismoney_pt.ts \
-  qt/locale/timeismoney_ro_RO.ts \
   qt/locale/timeismoney_ru.ts \
+  qt/locale/timeismoney_sk.ts \
+  qt/locale/timeismoney_sv.ts \
+  qt/locale/timeismoney_vi.ts \
+  qt/locale/timeismoney_zh_CN.ts \
   qt/locale/timeismoney_zh_TW.ts
 
 QT_FORMS_UI = \
@@ -23,7 +26,7 @@ QT_FORMS_UI = \
   qt/forms/bip38tooldialog.ui \
   qt/forms/coincontroldialog.ui \
   qt/forms/blockexplorer.ui \
-  qt/forms/obfuscationconfig.ui \
+  qt/forms/Darksendconfig.ui \
   qt/forms/editaddressdialog.ui \
   qt/forms/helpmessagedialog.ui \
   qt/forms/intro.ui \
@@ -32,6 +35,7 @@ QT_FORMS_UI = \
   qt/forms/openuridialog.ui \
   qt/forms/optionsdialog.ui \
   qt/forms/overviewpage.ui \
+  qt/forms/coinmix.ui \
   qt/forms/receivecoinsdialog.ui \
   qt/forms/receiverequestdialog.ui \
   qt/forms/rpcconsole.ui \
@@ -54,7 +58,7 @@ QT_MOC_CPP = \
   qt/moc_coincontroldialog.cpp \
   qt/moc_coincontroltreewidget.cpp \
   qt/moc_csvmodelwriter.cpp \
-  qt/moc_obfuscationconfig.cpp \
+  qt/moc_Darksendconfig.cpp \
   qt/moc_editaddressdialog.cpp \
   qt/moc_guiutil.cpp \
   qt/moc_intro.cpp \
@@ -67,6 +71,7 @@ QT_MOC_CPP = \
   qt/moc_optionsdialog.cpp \
   qt/moc_optionsmodel.cpp \
   qt/moc_overviewpage.cpp \
+  qt/moc_coinmix.cpp \
   qt/moc_peertablemodel.cpp \
   qt/moc_paymentserver.cpp \
   qt/moc_qvalidatedlineedit.cpp \
@@ -99,6 +104,7 @@ QT_MOC = \
   qt/bitcoinamountfield.moc \
   qt/intro.moc \
   qt/overviewpage.moc \
+  qt/coinmix.moc \
   qt/rpcconsole.moc
 
 QT_QRC_CPP = qt/qrc_timeismoney.cpp
@@ -124,7 +130,7 @@ BITCOIN_QT_H = \
   qt/coincontroldialog.h \
   qt/coincontroltreewidget.h \
   qt/csvmodelwriter.h \
-  qt/obfuscationconfig.h \
+  qt/Darksendconfig.h \
   qt/editaddressdialog.h \
   qt/guiconstants.h \
   qt/guiutil.h \
@@ -139,6 +145,7 @@ BITCOIN_QT_H = \
   qt/optionsdialog.h \
   qt/optionsmodel.h \
   qt/overviewpage.h \
+  qt/coinmix.h \
   qt/paymentrequestplus.h \
   qt/paymentserver.h \
   qt/peertablemodel.h \
@@ -201,6 +208,7 @@ RES_ICONS = \
   qt/res/icons/lock_closed.png \
   qt/res/icons/lock_open.png \
   qt/res/icons/masternodes.png \
+  qt/res/icons/coinmix.png \
   qt/res/icons/overview.png \
   qt/res/icons/qrcode.png \
   qt/res/icons/quit.png \
@@ -217,13 +225,7 @@ RES_ICONS = \
   qt/res/icons/tx_inout.png \
   qt/res/icons/tx_input.png \
   qt/res/icons/tx_output.png \
-  qt/res/icons/tx_mined.png \
-  qt/res/icons/unit_timeismoney.png \
-  qt/res/icons/unit_mtimeismoney.png \
-  qt/res/icons/unit_utimeismoney.png \
-  qt/res/icons/unit_ttimeismoney.png \
-  qt/res/icons/unit_tmtimeismoney.png \
-  qt/res/icons/unit_tutimeismoney.png
+  qt/res/icons/tx_mined.png
 
 BITCOIN_QT_CPP = \
   qt/bitcoinaddressvalidator.cpp \
@@ -259,12 +261,13 @@ BITCOIN_QT_CPP += \
   qt/blockexplorer.cpp \
   qt/coincontroldialog.cpp \
   qt/coincontroltreewidget.cpp \
-  qt/obfuscationconfig.cpp \
+  qt/Darksendconfig.cpp \
   qt/editaddressdialog.cpp \
   qt/masternodelist.cpp \
   qt/multisenddialog.cpp \
   qt/openuridialog.cpp \
   qt/overviewpage.cpp \
+  qt/coinmix.cpp \
   qt/paymentrequestplus.cpp \
   qt/paymentserver.cpp \
   qt/receivecoinsdialog.cpp \
@@ -299,10 +302,11 @@ RES_IMAGES = \
   qt/res/images/qtreeview_selected.png \
   qt/res/images/walletFrame.png \
   qt/res/images/walletFrame_bg.png \
-  qt/res/images/walletFrame_bg.png
+  qt/res/images/walletFrame_bgdark.png
 
 RES_CSS = \
-  qt/res/css/default.css
+  qt/res/css/default.css \
+  qt/res/css/dark.css
 
 RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
 

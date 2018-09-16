@@ -20,7 +20,6 @@ const std::string CLIENT_NAME("TimeIsMoney Core");
  */
 #define CLIENT_VERSION_SUFFIX ""
 
-
 /**
  * The following part of the code determines the CLIENT_BUILD variable.
  * Several mechanisms are used for this:

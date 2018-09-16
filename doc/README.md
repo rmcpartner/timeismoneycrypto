@@ -1,12 +1,13 @@
 TimeIsMoney Core
-=====================
+=========
 
 Setup
----------------------
-[TimeIsMoney Core](http://timeismoney.com/wallet) is the original TimeIsMoney client and it builds the backbone of the network. However, it downloads and stores the entire history of TimeIsMoney transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+-----
+
+[TimeIsMoney Core]http://bit.timeismoneys/ is the original TimeIsMoney client and it builds the backbone of the network. However, it downloads and stores the entire history of TimeIsMoney transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
----------------------
+-------
 The following are some helpful notes on how to run TimeIsMoney on your native platform.
 
 ### Unix
@@ -22,17 +23,18 @@ Unpack the files into a directory, and then run timeismoney-qt.exe.
 
 ### OSX
 
-Drag timeismoney-qt to your applications folder, and then run timeismoney-qt.
+Drag TimeIsMoney-Qt to your applications folder, and then run TimeIsMoney-Qt.
 
 ### Need Help?
 
 * See the documentation at the [TimeIsMoney Wiki](https://en.bitcoin.it/wiki/Main_Page) ***TODO***
 for help and more information.
-* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or on the [TimeIsMoney Forum](http://forum.timeismoney.com/).
-* Join one of our Slack groups [TimeIsMoney Slack Groups](https://timeismoney.com/slack-logins/).
+* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=2976421).
+* Join our Discord server [TimeIsMoney Discord](https://discord.gg/DHYsG6j).
 
 Building
----------------------
+--------
+
 The following are developer notes on how to build TimeIsMoney on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [OSX Build Notes](build-osx.md)
@@ -40,8 +42,9 @@ The following are developer notes on how to build TimeIsMoney on your native pla
 - [Gitian Building Guide](gitian-building.md)
 
 Development
----------------------
-The TimeIsMoney repo's [root README](https://github.com/TimeIsMoney-Project/TimeIsMoney/blob/master/README.md) contains relevant information on the development process and automated testing.
+-----------
+
+The TimeIsMoney repo's [root README](https://github.com/timeismoneycoin/timeismoney-core/blob/master/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Multiwallet Qt Development](multiwallet-qt.md)
@@ -55,17 +58,19 @@ The TimeIsMoney repo's [root README](https://github.com/TimeIsMoney-Project/Time
 
 ### Resources
 
-* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or the [TimeIsMoney](http://forum.timeismoney.com/) forum.
-* Join the [TimeIsMoney-Dev](https://timeismoney-dev.slack.com/) Slack group ([Sign-Up](https://timeismoney-dev.herokuapp.com/)).
+* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=2976421).
+* Join the [TimeIsMoney Discord](https://discord.gg/DHYsG6j) 
 
 ### Miscellaneous
+
 - [Assets Attribution](assets-attribution.md)
 - [Files](files.md)
 - [Tor Support](tor.md)
 - [Init Scripts (systemd/upstart/openrc)](init.md)
 
 License
----------------------
+-------
+
 Distributed under the [MIT/X11 software license](http://www.opensource.org/licenses/mit-license.php).
 This product includes software developed by the OpenSSL Project for use in the [OpenSSL Toolkit](https://www.openssl.org/). This product includes
 cryptographic software written by Eric Young ([eay@cryptsoft.com](mailto:eay@cryptsoft.com)), and UPnP software written by Thomas Bernard.

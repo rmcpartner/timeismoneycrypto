@@ -1,5 +1,5 @@
 ---
-name: "timeismoney-linux-2.2"
+name: "timeismoney-linux-2.3"
 enable_cache: true
 suites:
 - "trusty"
@@ -29,8 +29,8 @@ packages:
 - "python"
 reference_datetime: "2015-06-01 00:00:00"
 remotes:
-- "url": "https://github.com/timeismoney-project/timeismoney.git"
-  "dir": "timeismoney"
+- "url": "https://github.com/timeismoneycoin/timeismoney-core.git"
+  "dir": "timeismoney-core"
 files: []
 script: |
 
@@ -114,7 +114,7 @@ script: |
   chmod +x ${WRAP_DIR}/${prog}
   done
 
-  cd timeismoney
+  cd timeismoney-core
   BASEPREFIX=`pwd`/depends
   # Build dependencies for each host
   for i in $HOSTS; do

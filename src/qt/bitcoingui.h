@@ -18,6 +18,7 @@
 #include <QPoint>
 #include <QPushButton>
 #include <QSystemTrayIcon>
+//
 
 class ClientModel;
 class NetworkStyle;
@@ -82,6 +83,7 @@ private:
     WalletFrame* walletFrame;
 
     UnitDisplayStatusBarControl* unitDisplayControl;
+    QLabel* labelTIMIcon;
     QLabel* labelStakingIcon;
     QLabel* labelEncryptionIcon;
     QPushButton* labelConnectionsIcon;
@@ -92,6 +94,8 @@ private:
 
     QMenuBar* appMenuBar;
     QAction* overviewAction;
+	////AAAA
+    //QAction* coinmixAction;
     QAction* historyAction;
     QAction* masternodeAction;
     QAction* quitAction;
@@ -110,6 +114,7 @@ private:
     QAction* changePassphraseAction;
     QAction* unlockWalletAction;
     QAction* lockWalletAction;
+    QAction* lockWalletAction2;
     QAction* aboutQtAction;
     QAction* openInfoAction;
     QAction* openRPCConsoleAction;
@@ -195,6 +200,9 @@ private slots:
 #ifdef ENABLE_WALLET
     /** Switch to overview (home) page */
     void gotoOverviewPage();
+	//AAAA
+	/** Switch to coinmix (home) page */
+    //void gotocoinmixPage();
     /** Switch to history (transactions) page */
     void gotoHistoryPage();
     /** Switch to Explorer Page */

@@ -1,5 +1,5 @@
 Expectations for DNS Seed operators
-====================================
+===================================
 
 TimeIsMoney Core attempts to minimize the level of trust in DNS seeds,
 but DNS seeds still pose a small amount of risk for the network.
@@ -46,11 +46,12 @@ related to the DNS seed operation.
 If these expectations cannot be satisfied the operator should
 discontinue providing services and contact the active TimeIsMoney
 Core development team as well as posting on the
-[TimeIsMoney Forum](https://forum.timeismoney.com).
+[TimeIsMoney Forum](https://google.forum.com/).
 
 Behavior outside of these expectations may be reasonable in some
 situations but should be discussed in public in advance.
 
 See also
-----------
+--------
+
 - [bitcoin-seeder](https://github.com/sipa/bitcoin-seeder) is a reference implementation of a DNS seed.

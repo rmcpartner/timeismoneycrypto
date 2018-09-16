@@ -22,7 +22,8 @@ public:
     CBaseMainParams()
     {
         networkID = CBaseChainParams::MAIN;
-        nRPCPort = 23008;
+        nRPCPort = 11334;
+        strDataDir = "mainnet";
     }
 };
 static CBaseMainParams mainParams;
@@ -36,8 +37,8 @@ public:
     CBaseTestNetParams()
     {
         networkID = CBaseChainParams::TESTNET;
-        nRPCPort = 123008;
-        strDataDir = "testnet4";
+        nRPCPort = 21334;
+        strDataDir = "testnet";
     }
 };
 static CBaseTestNetParams testNetParams;
@@ -51,6 +52,7 @@ public:
     CBaseRegTestParams()
     {
         networkID = CBaseChainParams::REGTEST;
+        nRPCPort = 31338;
         strDataDir = "regtest";
     }
 };
@@ -65,6 +67,7 @@ public:
     CBaseUnitTestParams()
     {
         networkID = CBaseChainParams::UNITTEST;
+        nRPCPort = 31338;
         strDataDir = "unittest";
     }
 };
@@ -74,6 +77,19 @@ static CBaseChainParams* pCurrentBaseParams = 0;
 
 const CBaseChainParams& BaseParams()
 {
+	if (pCurrentBaseParams) return *pCurrentBaseParams;
+
+    switch (NetworkIdFromCommandLine()) {
+    case CBaseChainParams::MAIN:
+        return mainParams;
+    case CBaseChainParams::TESTNET:
+    	    return testNetParams;
+    case CBaseChainParams::REGTEST:
+        return regTestParams;
+    case CBaseChainParams::UNITTEST:
+        return unitTestParams;
+    }
+
     assert(pCurrentBaseParams);
     return *pCurrentBaseParams;
 }

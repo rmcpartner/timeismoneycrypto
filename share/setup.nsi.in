@@ -6,8 +6,8 @@ SetCompressor /SOLID lzma
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
 !define VERSION @CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@
-!define COMPANY "TimeIsMoney Core project"
-!define URL https://www.timeismoney.com
+!define COMPANY "TimeIsMoney Core"
+!define URL http://bit.timeismoneys/
 
 # MUI Symbol Definitions
 !define MUI_ICON "@abs_top_srcdir@/share/pixmaps/bitcoin.ico"
@@ -107,7 +107,7 @@ Section -post SEC0001
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoModify 1
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoRepair 1
     WriteRegStr HKCR "timeismoney" "URL Protocol" ""
-    WriteRegStr HKCR "timeismoney" "" "URL:TimeIsMoney"
+    WriteRegStr HKCR "timeismoney" "" "URL:TIMEISMONEY"
     WriteRegStr HKCR "timeismoney\DefaultIcon" "" $INSTDIR\timeismoney-qt.exe
     WriteRegStr HKCR "timeismoney\shell\open\command" "" '"$INSTDIR\timeismoney-qt.exe" "%1"'
 SectionEnd

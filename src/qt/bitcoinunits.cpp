@@ -1,6 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2015-2017 The PIVX developers 
+// Copyright (c) 2015-2017 The ALQO developers
 // Copyright (c) 2017-2018 The TimeIsMoney developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -42,11 +43,11 @@ QString BitcoinUnits::id(int unit)
 {
     switch (unit) {
     case TIM:
-        return QString("timeismoney");
+        return QString("TIM");
     case mTIM:
-        return QString("mtimeismoney");
+        return QString("mTIM");
     case uTIM:
-        return QString::fromUtf8("utimeismoney");
+        return QString::fromUtf8("uTIM");
     default:
         return QString("???");
     }
@@ -283,5 +284,5 @@ QVariant BitcoinUnits::data(const QModelIndex& index, int role) const
 
 CAmount BitcoinUnits::maxMoney()
 {
-    return MAX_MONEY;
+    return Params().MaxMoneyOut();
 }

@@ -4,7 +4,7 @@
 <context>
     <name>AddressBookPage</name>
     <message>
-        <location filename="../forms/addressbookpage.ui" line="+67"/>
+        <location filename="../forms/addressbookpage.ui" line="+30"/>
         <source>Right-click to edit address or label</source>
         <translation>Right-click to edit address or label</translation>
     </message>
@@ -54,17 +54,17 @@
         <translation>C&amp;lose</translation>
     </message>
     <message>
-        <location filename="../addressbookpage.cpp" line="+44"/>
+        <location filename="../addressbookpage.cpp" line="+46"/>
         <source>Choose the address to send coins to</source>
         <translation>Choose the address to send coins to</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+1"/>
         <source>Choose the address to receive coins with</source>
         <translation>Choose the address to receive coins with</translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+5"/>
         <source>C&amp;hoose</source>
         <translation>C&amp;hoose</translation>
     </message>
@@ -74,7 +74,7 @@
         <translation>Sending addresses</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+1"/>
         <source>Receiving addresses</source>
         <translation>Receiving addresses</translation>
     </message>
@@ -104,7 +104,7 @@
         <translation>&amp;Edit</translation>
     </message>
     <message>
-        <location line="+187"/>
+        <location line="+194"/>
         <source>Export Address List</source>
         <translation>Export Address List</translation>
     </message>
@@ -127,7 +127,7 @@
 <context>
     <name>AddressTableModel</name>
     <message>
-        <location filename="../addresstablemodel.cpp" line="+157"/>
+        <location filename="../addresstablemodel.cpp" line="+170"/>
         <source>Label</source>
         <translation>Label</translation>
     </message>
@@ -137,7 +137,7 @@
         <translation>Address</translation>
     </message>
     <message>
-        <location line="+33"/>
+        <location line="+36"/>
         <source>(no label)</source>
         <translation>(no label)</translation>
     </message>
@@ -175,7 +175,7 @@
         <translation>For anonymization and staking only</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog.cpp" line="+42"/>
+        <location filename="../askpassphrasedialog.cpp" line="+44"/>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
         <translation>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</translation>
     </message>
@@ -215,17 +215,17 @@
         <translation>Enter the old and new passphrase to the wallet.</translation>
     </message>
     <message>
-        <location line="+44"/>
+        <location line="+46"/>
         <source>Confirm wallet encryption</source>
         <translation>Confirm wallet encryption</translation>
     </message>
     <message>
-        <location line="+9"/>
-        <source>TimeIsMoney will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your TIMs from being stolen by malware infecting your computer.</source>
+        <location line="+12"/>
+        <source>TimeIsMoney will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your TimeIsMoneys from being stolen by malware infecting your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-8"/>
+        <location line="-11"/>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Are you sure you wish to encrypt your wallet?</translation>
     </message>
@@ -235,59 +235,59 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6"/>
-        <location line="+45"/>
+        <location line="+9"/>
+        <location line="+59"/>
         <source>Wallet encrypted</source>
         <translation>Wallet encrypted</translation>
     </message>
     <message>
-        <location line="-39"/>
+        <location line="-53"/>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
         <translation>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</translation>
     </message>
     <message>
+        <location line="+9"/>
         <location line="+7"/>
-        <location line="+5"/>
-        <location line="+31"/>
-        <location line="+4"/>
+        <location line="+43"/>
+        <location line="+6"/>
         <source>Wallet encryption failed</source>
         <translation>Wallet encryption failed</translation>
     </message>
     <message>
-        <location line="-39"/>
+        <location line="-55"/>
         <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
         <translation>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</translation>
     </message>
     <message>
-        <location line="+5"/>
-        <location line="+35"/>
+        <location line="+7"/>
+        <location line="+49"/>
         <source>The supplied passphrases do not match.</source>
         <translation>The supplied passphrases do not match.</translation>
     </message>
     <message>
-        <location line="-26"/>
+        <location line="-37"/>
         <source>Wallet unlock failed</source>
         <translation>Wallet unlock failed</translation>
     </message>
     <message>
         <location line="+1"/>
-        <location line="+8"/>
-        <location line="+13"/>
+        <location line="+11"/>
+        <location line="+19"/>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
         <translation>The passphrase entered for the wallet decryption was incorrect.</translation>
     </message>
     <message>
-        <location line="-14"/>
+        <location line="-20"/>
         <source>Wallet decryption failed</source>
         <translation>Wallet decryption failed</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+14"/>
         <source>Wallet passphrase was successfully changed.</source>
         <translation>Wallet passphrase was successfully changed.</translation>
     </message>
     <message>
-        <location line="+43"/>
+        <location line="+48"/>
         <location line="+24"/>
         <source>Warning: The Caps Lock key is on!</source>
         <translation>Warning: The Caps Lock key is on!</translation>
@@ -420,12 +420,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bip38tooldialog.cpp" line="+31"/>
+        <location filename="../bip38tooldialog.cpp" line="+32"/>
         <source>Click &quot;Decrypt Key&quot; to compute key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+90"/>
+        <location line="+96"/>
         <source>The entered passphrase is invalid. </source>
         <translation type="unfinished"></translation>
     </message>
@@ -435,13 +435,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+8"/>
         <source>The entered address is invalid.</source>
         <translation type="unfinished">The entered address is invalid.</translation>
     </message>
     <message>
         <location line="+0"/>
-        <location line="+8"/>
+        <location line="+9"/>
         <source>Please check the address and try again.</source>
         <translation type="unfinished">Please check the address and try again.</translation>
     </message>
@@ -451,18 +451,18 @@
         <translation type="unfinished">The entered address does not refer to a key.</translation>
     </message>
     <message>
-        <location line="+7"/>
-        <location line="+57"/>
+        <location line="+8"/>
+        <location line="+60"/>
         <source>Wallet unlock was cancelled.</source>
         <translation type="unfinished">Wallet unlock was cancelled.</translation>
     </message>
     <message>
-        <location line="-50"/>
+        <location line="-52"/>
         <source>Private key for the entered address is not available.</source>
         <translation type="unfinished">Private key for the entered address is not available.</translation>
     </message>
     <message>
-        <location line="+33"/>
+        <location line="+34"/>
         <source>Failed to decrypt.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -472,7 +472,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+26"/>
+        <location line="+28"/>
         <source>Data Not Valid.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -487,12 +487,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+9"/>
         <source>Key Already Held By Wallet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+9"/>
         <source>Error Adding Key To Wallet</source>
         <translation type="unfinished"></translation>
     </message>
@@ -505,7 +505,7 @@
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <location filename="../bitcoingui.cpp" line="+123"/>
+        <location filename="../bitcoingui.cpp" line="+127"/>
         <source>Wallet</source>
         <translation>Wallet</translation>
     </message>
@@ -515,7 +515,7 @@
         <translation>Node</translation>
     </message>
     <message>
-        <location line="+157"/>
+        <location line="+165"/>
         <source>&amp;Overview</source>
         <translation>&amp;Overview</translation>
     </message>
@@ -686,12 +686,17 @@
         <translation>Show wallet repair options</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+1"/>
+        <source>Open &amp;Configuration File</source>
+        <translation>Open &amp;Configuration File</translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>Open configuration file</source>
         <translation>Open configuration file</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+1"/>
         <source>Show Automatic &amp;Backups</source>
         <translation>Show Automatic &amp;Backups</translation>
     </message>
@@ -726,12 +731,12 @@
         <translation>Open &amp;URI...</translation>
     </message>
     <message>
-        <location line="+5"/>
+        <location line="+8"/>
         <source>&amp;Command-line options</source>
         <translation>&amp;Command-line options</translation>
     </message>
     <message numerus="yes">
-        <location line="+428"/>
+        <location line="+431"/>
         <source>Processed %n blocks of transaction history.</source>
         <translation>
             <numerusform>Processed %n block of transaction history.</numerusform>
@@ -744,44 +749,44 @@
         <translation>Synchronizing additional data: %p%</translation>
     </message>
     <message>
-        <location line="-421"/>
+        <location line="-423"/>
         <source>&amp;File</source>
         <translation>&amp;File</translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+14"/>
         <source>&amp;Settings</source>
         <translation>&amp;Settings</translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+18"/>
         <source>&amp;Tools</source>
         <translation>&amp;Tools</translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+12"/>
         <source>&amp;Help</source>
         <translation>&amp;Help</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+11"/>
         <source>Tabs toolbar</source>
         <translation>Tabs toolbar</translation>
     </message>
     <message>
-        <location line="-396"/>
-        <location line="+831"/>
+        <location line="-413"/>
+        <location line="+853"/>
         <source>TimeIsMoney Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-652"/>
+        <location line="-665"/>
         <source>Send coins to a TimeIsMoney address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+11"/>
-        <source>Request payments (generates QR codes and timeismoney: URIs)</source>
+        <source>Request payments (generates QR codes and TIMEISMONEY:URIs)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -840,23 +845,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+13"/>
-        <source>Open Wallet &amp;Configuration File</source>
+        <location line="+24"/>
+        <source>Open a TIMEISMONEY:URI or payment request</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Open &amp;Masternode Configuration File</source>
+        <source>&amp;Trading window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Open Masternode configuration file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+10"/>
-        <source>Open a TimeIsMoney: URI or payment request</source>
+        <source>Bittrex trading window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -875,12 +875,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+201"/>
+        <location line="+65"/>
+        <source>&amp;Trade</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+147"/>
         <source>TimeIsMoney Core client</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location line="+190"/>
+        <location line="+182"/>
         <source>%n active connection(s) to TimeIsMoney network</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -908,12 +913,12 @@
         <translation>No block source available...</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+17"/>
         <source>Up to date</source>
         <translation>Up to date</translation>
     </message>
     <message numerus="yes">
-        <location line="+41"/>
+        <location line="+43"/>
         <source>%n hour(s)</source>
         <translation>
             <numerusform>%n hour</numerusform>
@@ -921,7 +926,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location line="+2"/>
+        <location line="+4"/>
         <source>%n day(s)</source>
         <translation>
             <numerusform>%n day</numerusform>
@@ -929,8 +934,8 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location line="+2"/>
         <location line="+4"/>
+        <location line="+6"/>
         <source>%n week(s)</source>
         <translation>
             <numerusform>%n week</numerusform>
@@ -971,7 +976,7 @@
         <translation>Transactions after this will not yet be visible.</translation>
     </message>
     <message>
-        <location line="+26"/>
+        <location line="+27"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
@@ -986,7 +991,7 @@
         <translation>Information</translation>
     </message>
     <message>
-        <location line="+67"/>
+        <location line="+74"/>
         <source>Sent transaction</source>
         <translation>Sent transaction</translation>
     </message>
@@ -1014,20 +1019,20 @@ Address: %4
 </translation>
     </message>
     <message>
-        <location line="+50"/>
+        <location line="+53"/>
         <source>Staking is active
  MultiSend: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+0"/>
-        <location line="+4"/>
+        <location line="+6"/>
         <source>Active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-4"/>
-        <location line="+4"/>
+        <location line="-6"/>
+        <location line="+6"/>
         <source>Not Active</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1038,7 +1043,7 @@ Address: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+30"/>
+        <location line="+32"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
         <translation>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</translation>
     </message>
@@ -1076,7 +1081,7 @@ Address: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../blockexplorer.cpp" line="+473"/>
+        <location filename="../blockexplorer.cpp" line="+498"/>
         <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (timeismoney.conf).</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1084,12 +1089,12 @@ Address: %4
 <context>
     <name>ClientModel</name>
     <message>
-        <location filename="../clientmodel.cpp" line="+73"/>
+        <location filename="../clientmodel.cpp" line="+74"/>
         <source>Total: %1 (OBF compatible: %2 / Enabled: %3)</source>
         <translation>Total: %1 (OBF compatible: %2 / Enabled: %3)</translation>
     </message>
     <message>
-        <location line="+101"/>
+        <location line="+107"/>
         <source>Network Alert</source>
         <translation>Network Alert</translation>
     </message>
@@ -1183,7 +1188,7 @@ Address: %4
     </message>
     <message>
         <location line="+5"/>
-        <source>DS Rounds</source>
+        <source>MIX Rounds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1207,7 +1212,7 @@ Address: %4
         <translation>Priority</translation>
     </message>
     <message>
-        <location filename="../coincontroldialog.cpp" line="+50"/>
+        <location filename="../coincontroldialog.cpp" line="+51"/>
         <source>Copy address</source>
         <translation>Copy address</translation>
     </message>
@@ -1273,83 +1278,83 @@ Address: %4
         <translation>Copy change</translation>
     </message>
     <message>
-        <location line="+157"/>
+        <location line="+162"/>
         <source>Please switch to &quot;List mode&quot; to use this function.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+196"/>
-        <source>Non-anonymized input selected. &lt;b&gt;Obfuscation will be disabled.&lt;/b&gt;&lt;br&gt;&lt;br&gt;If you still want to use Obfuscation, please deselect all non-nonymized inputs first and then check Obfuscation checkbox again.</source>
+        <location line="+204"/>
+        <source>Non-anonymized input selected. &lt;b&gt;Darksend will be disabled.&lt;/b&gt;&lt;br&gt;&lt;br&gt;If you still want to use Darksend, please deselect all non-nonymized inputs first and then check Darksend checkbox again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+32"/>
         <source>highest</source>
         <translation>highest</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+1"/>
         <source>higher</source>
         <translation>higher</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+1"/>
         <source>high</source>
         <translation>high</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+1"/>
         <source>medium-high</source>
         <translation>medium-high</translation>
     </message>
     <message>
-        <location line="+207"/>
+        <location line="+216"/>
         <source>Can vary +/- %1 duff(s) per input.</source>
         <translation>Can vary +/- %1 duff(s) per input.</translation>
     </message>
     <message>
-        <location line="+130"/>
+        <location line="+132"/>
         <source>n/a</source>
         <translation>n/a</translation>
     </message>
     <message>
         <location filename="../forms/coincontroldialog.ui" line="-334"/>
-        <location filename="../coincontroldialog.cpp" line="-335"/>
+        <location filename="../coincontroldialog.cpp" line="-347"/>
         <source>medium</source>
         <translation>medium</translation>
     </message>
     <message>
-        <location filename="../coincontroldialog.cpp" line="+2"/>
+        <location filename="../coincontroldialog.cpp" line="+1"/>
         <source>low-medium</source>
         <translation>low-medium</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+1"/>
         <source>low</source>
         <translation>low</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+1"/>
         <source>lower</source>
         <translation>lower</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+1"/>
         <source>lowest</source>
         <translation>lowest</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+10"/>
         <source>(%1 locked)</source>
         <translation>(%1 locked)</translation>
     </message>
     <message>
-        <location line="+26"/>
+        <location line="+28"/>
         <source>none</source>
         <translation>none</translation>
     </message>
     <message>
-        <location line="+131"/>
+        <location line="+141"/>
         <source>yes</source>
         <translation>yes</translation>
     </message>
@@ -1360,7 +1365,7 @@ Address: %4
         <translation>no</translation>
     </message>
     <message>
-        <location filename="../coincontroldialog.cpp" line="+15"/>
+        <location filename="../coincontroldialog.cpp" line="+16"/>
         <source>This label turns red, if the transaction size is greater than 1000 bytes.</source>
         <translation>This label turns red, if the transaction size is greater than 1000 bytes.</translation>
     </message>
@@ -1391,13 +1396,13 @@ Address: %4
         <translation>This label turns red, if any recipient receives an amount smaller than %1.</translation>
     </message>
     <message>
-        <location line="+54"/>
-        <location line="+62"/>
+        <location line="+55"/>
+        <location line="+65"/>
         <source>(no label)</source>
         <translation>(no label)</translation>
     </message>
     <message>
-        <location line="-5"/>
+        <location line="-7"/>
         <source>change from %1 (%2)</source>
         <translation>change from %1 (%2)</translation>
     </message>
@@ -1435,7 +1440,7 @@ Address: %4
         <translation>The address associated with this address list entry. This can only be modified for sending addresses.</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="+28"/>
+        <location filename="../editaddressdialog.cpp" line="+30"/>
         <source>New receiving address</source>
         <translation>New receiving address</translation>
     </message>
@@ -1455,7 +1460,7 @@ Address: %4
         <translation>Edit sending address</translation>
     </message>
     <message>
-        <location line="+67"/>
+        <location line="+71"/>
         <source>The entered address &quot;%1&quot; is not a valid TimeIsMoney address.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1483,7 +1488,7 @@ Address: %4
         <translation>A new data directory will be created.</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+22"/>
         <source>name</source>
         <translation>name</translation>
     </message>
@@ -1498,7 +1503,7 @@ Address: %4
         <translation>Path already exists, and is not a directory.</translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+7"/>
         <source>Cannot create data directory here.</source>
         <translation>Cannot create data directory here.</translation>
     </message>
@@ -1506,7 +1511,7 @@ Address: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <location filename="../utilitydialog.cpp" line="+32"/>
+        <location filename="../utilitydialog.cpp" line="+33"/>
         <source>version</source>
         <translation>version</translation>
     </message>
@@ -1522,7 +1527,7 @@ Address: %4
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+5"/>
         <source>About TimeIsMoney Core</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1605,7 +1610,7 @@ Address: %4
         <translation>Use a custom data directory:</translation>
     </message>
     <message>
-        <location filename="../intro.cpp" line="+77"/>
+        <location filename="../intro.cpp" line="+82"/>
         <source>TimeIsMoney Core</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1615,17 +1620,17 @@ Address: %4
         <translation>Error: Specified data directory &quot;%1&quot; cannot be created.</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+24"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+9"/>
         <source>%1 GB of free space available</source>
         <translation>%1 GB of free space available</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>(of %1 GB needed)</source>
         <translation>(of %1 GB needed)</translation>
     </message>
@@ -1648,48 +1653,48 @@ Address: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+74"/>
+        <location line="+37"/>
         <source>Alias</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+5"/>
-        <location line="+160"/>
+        <location line="+123"/>
         <source>Address</source>
         <translation type="unfinished">Address</translation>
     </message>
     <message>
-        <location line="-155"/>
-        <location line="+160"/>
+        <location line="-118"/>
+        <location line="+123"/>
         <source>Protocol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-155"/>
-        <location line="+160"/>
+        <location line="-118"/>
+        <location line="+123"/>
         <source>Status</source>
         <translation type="unfinished">Status</translation>
     </message>
     <message>
-        <location line="-155"/>
-        <location line="+160"/>
+        <location line="-118"/>
+        <location line="+123"/>
         <source>Active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-155"/>
-        <location line="+160"/>
+        <location line="-118"/>
+        <location line="+123"/>
         <source>Last Seen (UTC)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-155"/>
-        <location line="+160"/>
+        <location line="-118"/>
+        <location line="+123"/>
         <source>Pubkey</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-147"/>
+        <location line="-110"/>
         <source>S&amp;tart alias</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1715,17 +1720,17 @@ Address: %4
     </message>
     <message>
         <location line="+7"/>
-        <location line="+159"/>
+        <location line="+122"/>
         <source>0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-134"/>
+        <location line="-97"/>
         <source>All Masternodes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+100"/>
+        <location line="+63"/>
         <source>Filter List:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1740,12 +1745,12 @@ Address: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../masternodelist.cpp" line="+51"/>
+        <location filename="../masternodelist.cpp" line="+52"/>
         <source>Start alias</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+261"/>
+        <location line="+257"/>
         <source>Confirm masternode start</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1765,7 +1770,7 @@ Address: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+24"/>
         <source>Command is not available right now</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1906,7 +1911,7 @@ MultiSend will not be activated unless you have clicked Activate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../multisenddialog.cpp" line="+92"/>
+        <location filename="../multisenddialog.cpp" line="+99"/>
         <source>The entered address:
 </source>
         <translation type="unfinished"></translation>
@@ -1918,24 +1923,24 @@ Please check the address and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+11"/>
+        <location line="+12"/>
         <source>The total amount of your MultiSend vector is over 100% of your stake reward
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+8"/>
         <source>Please Enter 1 - 100 for percent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+21"/>
         <source>MultiSend Vector
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+22"/>
+        <location line="+24"/>
         <source>Removed </source>
         <translation type="unfinished"></translation>
     </message>
@@ -1947,10 +1952,10 @@ Please check the address and try again.</source>
     </message>
 </context>
 <context>
-    <name>ObfuscationConfig</name>
+    <name>DarksendConfig</name>
     <message>
-        <location filename="../forms/obfuscationconfig.ui" line="+14"/>
-        <source>Configure Obfuscation</source>
+        <location filename="../forms/Darksendconfig.ui" line="+14"/>
+        <source>Configure Darksend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1975,12 +1980,12 @@ Please check the address and try again.</source>
     </message>
     <message>
         <location line="+13"/>
-        <source>Use 2 separate masternodes to mix funds up to 10000 TIM</source>
+        <source>Use 2 separate masternodes to mix funds up to 1000 TIM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+13"/>
-        <source>Use 8 separate masternodes to mix funds up to 10000 TIM</source>
+        <source>Use 8 separate masternodes to mix funds up to 1000 TIM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1990,12 +1995,12 @@ Please check the address and try again.</source>
     </message>
     <message>
         <location line="+13"/>
-        <source>This option is the quickest and will cost about ~0.025 TIM to anonymize 10000 TIM</source>
+        <source>This option is the quickest and will cost about ~0.025 TIM to anonymize 1000 TIM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+13"/>
-        <source>This option is moderately fast and will cost about 0.05 TIM to anonymize 10000 TIM</source>
+        <source>This option is moderately fast and will cost about 0.05 TIM to anonymize 1000 TIM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2005,29 +2010,29 @@ Please check the address and try again.</source>
     </message>
     <message>
         <location line="+13"/>
-        <source>0.1 TIM per 10000 TIM you anonymize.</source>
+        <source>0.1 TIM per 1000 TIM you anonymize.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../obfuscationconfig.cpp" line="+42"/>
-        <location line="+14"/>
-        <location line="+14"/>
-        <source>Obfuscation Configuration</source>
+        <location filename="../Darksendconfig.cpp" line="+43"/>
+        <location line="+15"/>
+        <location line="+15"/>
+        <source>Darksend Configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-27"/>
-        <source>Obfuscation was successfully set to basic (%1 and 2 rounds). You can change this at any time by opening TimeIsMoney&apos;s configuration screen.</source>
+        <location line="-29"/>
+        <source>Darksend was successfully set to basic (%1 and 2 rounds). You can change this at any time by opening TimeIsMoney&apos;s configuration screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
-        <source>Obfuscation was successfully set to high (%1 and 8 rounds). You can change this at any time by opening TimeIsMoney&apos;s configuration screen.</source>
+        <location line="+15"/>
+        <source>Darksend was successfully set to high (%1 and 8 rounds). You can change this at any time by opening TimeIsMoney&apos;s configuration screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
-        <source>Obfuscation was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening TimeIsMoney&apos;s configuration screen.</source>
+        <location line="+15"/>
+        <source>Darksend was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening TimeIsMoney&apos;s configuration screen.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2054,7 +2059,7 @@ Please check the address and try again.</source>
         <translation>Select payment request file</translation>
     </message>
     <message>
-        <location filename="../openuridialog.cpp" line="+47"/>
+        <location filename="../openuridialog.cpp" line="+49"/>
         <source>Select payment request file to open</source>
         <translation>Select payment request file to open</translation>
     </message>
@@ -2143,12 +2148,12 @@ Please check the address and try again.</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>Obfuscation rounds to use</source>
+        <source>Darksend rounds to use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+24"/>
-        <source>This amount acts as a threshold to turn off Obfuscation once it&apos;s reached.</source>
+        <source>This amount acts as a threshold to turn off Darksend once it&apos;s reached.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2194,7 +2199,7 @@ Please check the address and try again.</source>
     <message>
         <location line="+21"/>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/timeismoney-project/timeismoney-project-translations</source>
+https://www.transifex.com/timeismoneycoin/timeismoney-project-translations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2319,38 +2324,38 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>&amp;Cancel</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="+99"/>
+        <location filename="../optionsdialog.cpp" line="+100"/>
         <source>default</source>
         <translation>default</translation>
     </message>
     <message>
-        <location line="+55"/>
+        <location line="+60"/>
         <source>none</source>
         <translation>none</translation>
     </message>
     <message>
-        <location line="+87"/>
+        <location line="+89"/>
         <source>Confirm options reset</source>
         <translation>Confirm options reset</translation>
     </message>
     <message>
         <location line="+1"/>
-        <location line="+30"/>
+        <location line="+31"/>
         <source>Client restart required to activate changes.</source>
         <translation>Client restart required to activate changes.</translation>
     </message>
     <message>
-        <location line="-30"/>
+        <location line="-31"/>
         <source>Client will be shutdown, do you want to proceed?</source>
         <translation>Client will be shutdown, do you want to proceed?</translation>
     </message>
     <message>
-        <location line="+32"/>
+        <location line="+35"/>
         <source>This change would require a client restart.</source>
         <translation>This change would require a client restart.</translation>
     </message>
     <message>
-        <location line="+24"/>
+        <location line="+25"/>
         <source>The supplied proxy address is invalid.</source>
         <translation>The supplied proxy address is invalid.</translation>
     </message>
@@ -2451,7 +2456,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
     </message>
     <message>
         <location line="+27"/>
-        <source>Obfuscation Balance:</source>
+        <source>Darksend Balance:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2466,21 +2471,21 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
     </message>
     <message>
         <location line="+516"/>
-        <source>Try to manually submit a Obfuscation request.</source>
+        <source>Try to manually submit a Darksend request.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+22"/>
-        <source>Reset the current status of Obfuscation (can interrupt Obfuscation if it&apos;s in the process of Mixing, which can cost you money!)</source>
+        <source>Reset the current status of Darksend (can interrupt Darksend if it&apos;s in the process of Mixing, which can cost you money!)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+28"/>
-        <location filename="../overviewpage.cpp" line="+478"/>
-        <location line="+11"/>
+        <location filename="../overviewpage.cpp" line="+492"/>
         <location line="+10"/>
-        <location line="+12"/>
-        <source>Obfuscation</source>
+        <location line="+10"/>
+        <location line="+14"/>
+        <source>Darksend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2534,7 +2539,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Reset</translation>
     </message>
     <message>
-        <location filename="../overviewpage.cpp" line="-381"/>
+        <location filename="../overviewpage.cpp" line="-385"/>
         <location line="+1"/>
         <location line="+1"/>
         <source>out of sync</source>
@@ -2544,12 +2549,12 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <location line="+6"/>
         <location line="+1"/>
         <location line="+1"/>
-        <location line="+293"/>
+        <location line="+296"/>
         <source>Disabled</source>
         <translation>Disabled</translation>
     </message>
     <message>
-        <location line="-117"/>
+        <location line="-115"/>
         <location line="+6"/>
         <source>No inputs detected</source>
         <translation>No inputs detected</translation>
@@ -2593,47 +2598,47 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         </translation>
     </message>
     <message>
-        <location line="+44"/>
-        <source>Last Obfuscation message:
+        <location line="+43"/>
+        <source>Last Darksend message:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+27"/>
-        <source>Obfuscation was successfully reset.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+11"/>
-        <source>If you don&apos;t want to see internal Obfuscation fees/transactions select &quot;Most Common&quot; as Type on the &quot;Transactions&quot; tab.</source>
+        <location line="+26"/>
+        <source>Darksend was successfully reset.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+10"/>
-        <source>Obfuscation requires at least %1 to use.</source>
+        <source>If you don&apos;t want to see internal Darksend fees/transactions select &quot;Most Common&quot; as Type on the &quot;Transactions&quot; tab.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+12"/>
-        <source>Wallet is locked and user declined to unlock. Disabling Obfuscation.</source>
+        <location line="+10"/>
+        <source>Darksend requires at least %1 to use.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-160"/>
+        <location line="+14"/>
+        <source>Wallet is locked and user declined to unlock. Disabling Darksend.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-159"/>
         <source>Found enough compatible inputs to anonymize %1</source>
         <translation>Found enough compatible inputs to anonymize %1</translation>
     </message>
     <message>
-        <location line="-208"/>
-        <location line="+291"/>
-        <location line="+89"/>
-        <source>Start Obfuscation</source>
+        <location line="-213"/>
+        <location line="+294"/>
+        <location line="+91"/>
+        <source>Start Darksend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-378"/>
-        <location line="+381"/>
-        <source>Stop Obfuscation</source>
+        <location line="-383"/>
+        <location line="+386"/>
+        <source>Stop Darksend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2642,7 +2647,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Mixed</translation>
     </message>
     <message>
-        <location line="+41"/>
+        <location line="+40"/>
         <source>Enabled</source>
         <translation>Enabled</translation>
     </message>
@@ -2655,76 +2660,76 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
 <context>
     <name>PaymentServer</name>
     <message>
-        <location filename="../paymentserver.cpp" line="+297"/>
-        <location line="+209"/>
-        <location line="+33"/>
-        <location line="+104"/>
-        <location line="+12"/>
+        <location filename="../paymentserver.cpp" line="+319"/>
+        <location line="+226"/>
+        <location line="+34"/>
+        <location line="+109"/>
         <location line="+14"/>
+        <location line="+18"/>
         <source>Payment request error</source>
         <translation>Payment request error</translation>
     </message>
     <message>
-        <location line="-275"/>
-        <location line="+12"/>
-        <location line="+5"/>
+        <location line="-296"/>
+        <location line="+14"/>
+        <location line="+7"/>
         <source>URI handling</source>
         <translation>URI handling</translation>
     </message>
     <message>
-        <location line="-16"/>
+        <location line="-20"/>
         <source>Payment request fetch URL is invalid: %1</source>
         <translation>Payment request fetch URL is invalid: %1</translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+34"/>
         <source>Payment request file handling</source>
         <translation>Payment request file handling</translation>
     </message>
     <message>
-        <location line="-18"/>
+        <location line="-21"/>
         <source>Invalid payment address %1</source>
         <translation>Invalid payment address %1</translation>
     </message>
     <message>
-        <location line="-108"/>
-        <source>Cannot start timeismoney: click-to-pay handler</source>
+        <location line="-118"/>
+        <source>Cannot start TIMEISMONEY: click-to-pay handler</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+114"/>
+        <location line="+126"/>
         <source>URI cannot be parsed! This can be caused by an invalid TimeIsMoney address or malformed URI parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+14"/>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
         <translation>Payment request file cannot be read! This can be caused by an invalid payment request file.</translation>
     </message>
     <message>
-        <location line="+67"/>
-        <location line="+8"/>
-        <location line="+30"/>
+        <location line="+69"/>
+        <location line="+9"/>
+        <location line="+32"/>
         <source>Payment request rejected</source>
         <translation>Payment request rejected</translation>
     </message>
     <message>
-        <location line="-38"/>
+        <location line="-41"/>
         <source>Payment request network doesn&apos;t match client network.</source>
         <translation>Payment request network doesn&apos;t match client network.</translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+9"/>
         <source>Payment request has expired.</source>
         <translation>Payment request has expired.</translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+7"/>
         <source>Payment request is not initialized.</source>
         <translation>Payment request is not initialized.</translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+26"/>
         <source>Unverified payment requests to custom payment scripts are unsupported.</source>
         <translation>Unverified payment requests to custom payment scripts are unsupported.</translation>
     </message>
@@ -2734,12 +2739,12 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Requested payment amount of %1 is too small (considered dust).</translation>
     </message>
     <message>
-        <location line="+48"/>
+        <location line="+50"/>
         <source>Refund from %1</source>
         <translation>Refund from %1</translation>
     </message>
     <message>
-        <location line="+40"/>
+        <location line="+43"/>
         <source>Payment request %1 is too large (%2 bytes, allowed %3 bytes).</source>
         <translation>Payment request %1 is too large (%2 bytes, allowed %3 bytes).</translation>
     </message>
@@ -2754,17 +2759,17 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Error communicating with %1: %2</translation>
     </message>
     <message>
-        <location line="+18"/>
+        <location line="+20"/>
         <source>Payment request cannot be parsed!</source>
         <translation>Payment request cannot be parsed!</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+13"/>
         <source>Bad response from server %1</source>
         <translation>Bad response from server %1</translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+22"/>
         <source>Network request error</source>
         <translation>Network request error</translation>
     </message>
@@ -2777,7 +2782,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
 <context>
     <name>PeerTableModel</name>
     <message>
-        <location filename="../peertablemodel.cpp" line="+113"/>
+        <location filename="../peertablemodel.cpp" line="+118"/>
         <source>Address/Hostname</source>
         <translation>Address/Hostname</translation>
     </message>
@@ -2795,7 +2800,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../bitcoinunits.cpp" line="+252"/>
+        <location filename="../bitcoinunits.cpp" line="+244"/>
         <source>Amount</source>
         <translation>Amount</translation>
     </message>
@@ -2805,7 +2810,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+762"/>
+        <location line="+778"/>
         <source>%1 d</source>
         <translation>%1 d</translation>
     </message>
@@ -2825,7 +2830,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>%1 s</translation>
     </message>
     <message>
-        <location line="+15"/>
+        <location line="+17"/>
         <source>NETWORK</source>
         <translation>NETWORK</translation>
     </message>
@@ -2853,7 +2858,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
 <context>
     <name>QRImageWidget</name>
     <message>
-        <location filename="../receiverequestdialog.cpp" line="+35"/>
+        <location filename="../receiverequestdialog.cpp" line="+36"/>
         <source>&amp;Save Image...</source>
         <translation>&amp;Save Image...</translation>
     </message>
@@ -2863,7 +2868,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>&amp;Copy Image</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+32"/>
         <source>Save QR Code</source>
         <translation>Save QR Code</translation>
     </message>
@@ -3040,8 +3045,8 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
     </message>
     <message>
         <location line="+41"/>
-        <location filename="../rpcconsole.cpp" line="+262"/>
-        <location line="+439"/>
+        <location filename="../rpcconsole.cpp" line="+253"/>
+        <location line="+426"/>
         <source>Select a peer to view detailed information.</source>
         <translation>Select a peer to view detailed information.</translation>
     </message>
@@ -3186,12 +3191,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>-reindex: Rebuild block chain index from current blk000??.dat files.</translation>
     </message>
     <message>
-        <location line="+16"/>
-        <source>Wallet Path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../rpcconsole.cpp" line="-206"/>
+        <location filename="../rpcconsole.cpp" line="-203"/>
         <source>In:</source>
         <translation>In:</translation>
     </message>
@@ -3201,17 +3201,12 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Out:</translation>
     </message>
     <message>
-        <location line="-36"/>
+        <location line="-35"/>
         <source>Welcome to the TimeIsMoney RPC console.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-209"/>
-        <source>Wallet in use: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+210"/>
+        <location line="+1"/>
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
         <translation>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</translation>
     </message>
@@ -3221,7 +3216,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</translation>
     </message>
     <message>
-        <location line="+138"/>
+        <location line="+139"/>
         <source>%1 B</source>
         <translation>%1 B</translation>
     </message>
@@ -3348,7 +3343,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Requested payments history</translation>
     </message>
     <message>
-        <location line="+62"/>
+        <location line="+25"/>
         <source>Show the selected request (does the same as double clicking an entry)</source>
         <translation>Show the selected request (does the same as double clicking an entry)</translation>
     </message>
@@ -3368,7 +3363,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Remove</translation>
     </message>
     <message>
-        <location filename="../receivecoinsdialog.cpp" line="+38"/>
+        <location filename="../receivecoinsdialog.cpp" line="+39"/>
         <source>Copy label</source>
         <translation>Copy label</translation>
     </message>
@@ -3406,7 +3401,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>&amp;Save Image...</translation>
     </message>
     <message>
-        <location filename="../receiverequestdialog.cpp" line="+63"/>
+        <location filename="../receiverequestdialog.cpp" line="+65"/>
         <source>Request payment to %1</source>
         <translation>Request payment to %1</translation>
     </message>
@@ -3441,12 +3436,12 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Message</translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+10"/>
         <source>Resulting URI too long, try to reduce the text for label / message.</source>
         <translation>Resulting URI too long, try to reduce the text for label / message.</translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+5"/>
         <source>Error encoding URI into QR Code.</source>
         <translation>Error encoding URI into QR Code.</translation>
     </message>
@@ -3454,7 +3449,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
-        <location filename="../recentrequeststablemodel.cpp" line="+27"/>
+        <location filename="../recentrequeststablemodel.cpp" line="+28"/>
         <source>Date</source>
         <translation>Date</translation>
     </message>
@@ -3469,22 +3464,22 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Message</translation>
     </message>
     <message>
-        <location line="+87"/>
+        <location line="+99"/>
         <source>Amount</source>
         <translation>Amount</translation>
     </message>
     <message>
-        <location line="-50"/>
+        <location line="-59"/>
         <source>(no label)</source>
         <translation>(no label)</translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+9"/>
         <source>(no message)</source>
         <translation>(no message)</translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+8"/>
         <source>(no amount)</source>
         <translation>(no amount)</translation>
     </message>
@@ -3493,9 +3488,9 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
     <name>SendCoinsDialog</name>
     <message>
         <location filename="../forms/sendcoinsdialog.ui" line="+14"/>
-        <location filename="../sendcoinsdialog.cpp" line="+233"/>
-        <location line="+25"/>
-        <location line="+383"/>
+        <location filename="../sendcoinsdialog.cpp" line="+240"/>
+        <location line="+31"/>
+        <location line="+407"/>
         <location line="+12"/>
         <source>Send Coins</source>
         <translation>Send Coins</translation>
@@ -3622,7 +3617,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
     </message>
     <message>
         <location line="+579"/>
-        <source>Obfuscation</source>
+        <source>Darksend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3728,8 +3723,8 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
     </message>
     <message>
         <location line="+57"/>
-        <source>SwiftTX</source>
-        <translation>SwiftTX</translation>
+        <source>InstantX</source>
+        <translation>InstantX</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -3737,7 +3732,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Balance:</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="-566"/>
+        <location filename="../sendcoinsdialog.cpp" line="-601"/>
         <source>Copy quantity</source>
         <translation>Copy quantity</translation>
     </message>
@@ -3777,12 +3772,12 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Copy change</translation>
     </message>
     <message>
-        <location line="+140"/>
+        <location line="+145"/>
         <source>The split block tool does not work when sending to outside addresses. Try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+31"/>
         <source>The split block tool does not work with multiple addresses. Try again.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3800,55 +3795,55 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>anonymous funds</translation>
     </message>
     <message>
-        <location line="+614"/>
+        <location line="+651"/>
         <source>Warning: Invalid TimeIsMoney address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-605"/>
+        <location line="-642"/>
         <source>any available funds (not recommended)</source>
         <translation>any available funds (not recommended)</translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>and SwiftTX</source>
-        <translation>and SwiftTX</translation>
+        <source>and InstantX</source>
+        <translation>and InstantX</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+24"/>
+        <location line="+5"/>
+        <location line="+5"/>
         <location line="+4"/>
-        <location line="+4"/>
-        <location line="+3"/>
         <source>%1 to %2</source>
         <translation>%1 to %2</translation>
     </message>
     <message>
-        <location line="+51"/>
+        <location line="+54"/>
         <source>Are you sure you want to send?</source>
         <translation>Are you sure you want to send?</translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+9"/>
         <source>are added as transaction fee</source>
         <translation>are added as transaction fee</translation>
     </message>
     <message>
-        <location line="+18"/>
+        <location line="+19"/>
         <source>Total Amount = &lt;b&gt;%1&lt;/b&gt;&lt;br /&gt;= %2</source>
         <translation>Total Amount = &lt;b&gt;%1&lt;/b&gt;&lt;br /&gt;= %2</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+20"/>
         <source>Confirm send coins</source>
         <translation>Confirm send coins</translation>
     </message>
     <message>
-        <location line="+227"/>
+        <location line="+241"/>
         <source>A fee %1 times higher than %2 per kB is considered an insanely high fee.</source>
         <translation>A fee %1 times higher than %2 per kB is considered an insanely high fee.</translation>
     </message>
     <message numerus="yes">
-        <location line="+102"/>
+        <location line="+109"/>
         <source>Estimated to begin confirmation within %n block(s).</source>
         <translation>
             <numerusform>Estimated to begin confirmation within %n block.</numerusform>
@@ -3856,27 +3851,27 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         </translation>
     </message>
     <message>
-        <location line="-129"/>
+        <location line="-136"/>
         <source>The recipient address is not valid, please recheck.</source>
         <translation>The recipient address is not valid, please recheck.</translation>
     </message>
     <message>
-        <location line="-341"/>
-        <source>(obfuscation requires this amount to be rounded up to the nearest %1).</source>
+        <location line="-365"/>
+        <source>(Darksend requires this amount to be rounded up to the nearest %1).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+54"/>
         <source> split into %1 outputs using the UTXO splitter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+89"/>
+        <location line="+94"/>
         <source>&lt;b&gt;(%1 of %2 entries displayed)&lt;/b&gt;</source>
         <translation>&lt;b&gt;(%1 of %2 entries displayed)&lt;/b&gt;</translation>
     </message>
     <message>
-        <location line="+206"/>
+        <location line="+220"/>
         <source>The amount to pay must be larger than 0.</source>
         <translation>The amount to pay must be larger than 0.</translation>
     </message>
@@ -3911,17 +3906,17 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Error: The wallet was unlocked only to anonymize coins.</translation>
     </message>
     <message>
-        <location line="+87"/>
+        <location line="+90"/>
         <source>Pay only the minimum fee of %1</source>
         <translation>Pay only the minimum fee of %1</translation>
     </message>
     <message>
-        <location line="+166"/>
+        <location line="+177"/>
         <source>Warning: Unknown change address</source>
         <translation>Warning: Unknown change address</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+11"/>
         <source>(no label)</source>
         <translation>(no label)</translation>
     </message>
@@ -3994,7 +3989,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
     </message>
     <message>
         <location line="+10"/>
-        <source>A message that was attached to the TimeIsMoney: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the TimeIsMoney network.</source>
+        <source>A message that was attached to the TIMEISMONEY:URI which will be stored with the transaction for your reference. Note: This message will not be sent over the TimeIsMoney network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4020,7 +4015,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>This is a verified payment request.</translation>
     </message>
     <message>
-        <location filename="../sendcoinsentry.cpp" line="+31"/>
+        <location filename="../sendcoinsentry.cpp" line="+32"/>
         <source>Enter a label for this address to add it to your address book</source>
         <translation>Enter a label for this address to add it to your address book</translation>
     </message>
@@ -4028,7 +4023,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <location filename="../utilitydialog.cpp" line="+42"/>
+        <location filename="../utilitydialog.cpp" line="+43"/>
         <source>TimeIsMoney Core is shutting down...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4149,42 +4144,42 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Reset all verify message fields</translation>
     </message>
     <message>
-        <location filename="../signverifymessagedialog.cpp" line="+30"/>
+        <location filename="../signverifymessagedialog.cpp" line="+31"/>
         <source>Click &quot;Sign Message&quot; to generate signature</source>
         <translation>Click &quot;Sign Message&quot; to generate signature</translation>
     </message>
     <message>
+        <location line="+83"/>
         <location line="+80"/>
-        <location line="+73"/>
         <source>The entered address is invalid.</source>
         <translation>The entered address is invalid.</translation>
     </message>
     <message>
-        <location line="-73"/>
-        <location line="+7"/>
-        <location line="+66"/>
-        <location line="+7"/>
+        <location line="-80"/>
+        <location line="+8"/>
+        <location line="+72"/>
+        <location line="+8"/>
         <source>Please check the address and try again.</source>
         <translation>Please check the address and try again.</translation>
     </message>
     <message>
-        <location line="-73"/>
-        <location line="+73"/>
+        <location line="-80"/>
+        <location line="+80"/>
         <source>The entered address does not refer to a key.</source>
         <translation>The entered address does not refer to a key.</translation>
     </message>
     <message>
-        <location line="-66"/>
+        <location line="-72"/>
         <source>Wallet unlock was cancelled.</source>
         <translation>Wallet unlock was cancelled.</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+8"/>
         <source>Private key for the entered address is not available.</source>
         <translation>Private key for the entered address is not available.</translation>
     </message>
     <message>
-        <location line="+11"/>
+        <location line="+12"/>
         <source>Message signing failed.</source>
         <translation>Message signing failed.</translation>
     </message>
@@ -4194,13 +4189,13 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Message signed.</translation>
     </message>
     <message>
-        <location line="+53"/>
+        <location line="+58"/>
         <source>The signature could not be decoded.</source>
         <translation>The signature could not be decoded.</translation>
     </message>
     <message>
         <location line="+0"/>
-        <location line="+12"/>
+        <location line="+13"/>
         <source>Please check the signature and try again.</source>
         <translation>Please check the signature and try again.</translation>
     </message>
@@ -4210,7 +4205,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>The signature did not match the message digest.</translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+7"/>
         <source>Message verification failed.</source>
         <translation>Message verification failed.</translation>
     </message>
@@ -4223,7 +4218,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
 <context>
     <name>SplashScreen</name>
     <message>
-        <location filename="../splashscreen.cpp" line="+36"/>
+        <location filename="../splashscreen.cpp" line="+37"/>
         <source>TimeIsMoney Core</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4239,7 +4234,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
     </message>
     <message>
         <location line="+1"/>
-        <source>The Dash Core developers</source>
+        <source>The Dash and PIVX Core Developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4256,7 +4251,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
 <context>
     <name>TrafficGraphWidget</name>
     <message>
-        <location filename="../trafficgraphwidget.cpp" line="+78"/>
+        <location filename="../trafficgraphwidget.cpp" line="+79"/>
         <source>KB/s</source>
         <translation>KB/s</translation>
     </message>
@@ -4264,7 +4259,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
 <context>
     <name>TransactionDesc</name>
     <message numerus="yes">
-        <location filename="../transactiondesc.cpp" line="+33"/>
+        <location filename="../transactiondesc.cpp" line="+34"/>
         <source>Open for %n more block(s)</source>
         <translation>
             <numerusform>Open for %n more block</numerusform>
@@ -4277,7 +4272,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Open until %1</translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+11"/>
         <location line="+11"/>
         <location line="+10"/>
         <location line="+12"/>
@@ -4286,18 +4281,18 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
     </message>
     <message>
         <location line="-31"/>
-        <source>%1/offline (verified via swifttx)</source>
-        <translation>%1/offline (verified via swifttx)</translation>
+        <source>%1/offline (verified via Instantx)</source>
+        <translation>%1/offline (verified via Instantx)</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>%1/confirmed (verified via swifttx)</source>
-        <translation>%1/confirmed (verified via swifttx)</translation>
+        <source>%1/confirmed (verified via Instantx)</source>
+        <translation>%1/confirmed (verified via Instantx)</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>%1 confirmations (verified via swifttx)</source>
-        <translation>%1 confirmations (verified via swifttx)</translation>
+        <source>%1 confirmations (verified via Instantx)</source>
+        <translation>%1 confirmations (verified via Instantx)</translation>
     </message>
     <message>
         <location line="+29"/>
@@ -4317,28 +4312,28 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
     </message>
     <message>
         <location line="-26"/>
-        <source>%1/offline (SwiftTX verification in progress - %2 of %3 signatures)</source>
-        <translation>%1/offline (SwiftTX verification in progress - %2 of %3 signatures)</translation>
+        <source>%1/offline (InstantX verification in progress - %2 of %3 signatures)</source>
+        <translation>%1/offline (InstantX verification in progress - %2 of %3 signatures)</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>%1/confirmed (SwiftTX verification in progress - %2 of %3 signatures )</source>
-        <translation>%1/confirmed (SwiftTX verification in progress - %2 of %3 signatures )</translation>
+        <source>%1/confirmed (InstantX verification in progress - %2 of %3 signatures )</source>
+        <translation>%1/confirmed (InstantX verification in progress - %2 of %3 signatures )</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>%1 confirmations (SwiftTX verification in progress - %2 of %3 signatures)</source>
-        <translation>%1 confirmations (SwiftTX verification in progress - %2 of %3 signatures)</translation>
+        <source>%1 confirmations (InstantX verification in progress - %2 of %3 signatures)</source>
+        <translation>%1 confirmations (InstantX verification in progress - %2 of %3 signatures)</translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>%1/offline (SwiftTX verification failed)</source>
-        <translation>%1/offline (SwiftTX verification failed)</translation>
+        <source>%1/offline (InstantX verification failed)</source>
+        <translation>%1/offline (InstantX verification failed)</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>%1/confirmed (SwiftTX verification failed)</source>
-        <translation>%1/confirmed (SwiftTX verification failed)</translation>
+        <source>%1/confirmed (InstantX verification failed)</source>
+        <translation>%1/confirmed (InstantX verification failed)</translation>
     </message>
     <message>
         <location line="+32"/>
@@ -4346,7 +4341,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Status</translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="+5"/>
         <source>, has not been successfully broadcast yet</source>
         <translation>, has not been successfully broadcast yet</translation>
     </message>
@@ -4364,7 +4359,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Date</translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+7"/>
         <source>Source</source>
         <translation>Source</translation>
     </message>
@@ -4374,51 +4369,51 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Generated</translation>
     </message>
     <message>
-        <location line="+3"/>
-        <location line="+8"/>
-        <location line="+63"/>
+        <location line="+5"/>
+        <location line="+13"/>
+        <location line="+72"/>
         <source>From</source>
         <translation>From</translation>
     </message>
     <message>
-        <location line="-63"/>
+        <location line="-72"/>
         <source>unknown</source>
         <translation>unknown</translation>
     </message>
     <message>
         <location line="+1"/>
-        <location line="+19"/>
-        <location line="+58"/>
+        <location line="+20"/>
+        <location line="+69"/>
         <source>To</source>
         <translation>To</translation>
     </message>
     <message>
-        <location line="-75"/>
+        <location line="-87"/>
         <source>own address</source>
         <translation>own address</translation>
     </message>
     <message>
         <location line="+0"/>
-        <location line="+60"/>
+        <location line="+69"/>
         <source>watch-only</source>
         <translation>watch-only</translation>
     </message>
     <message>
-        <location line="-58"/>
+        <location line="-67"/>
         <source>label</source>
         <translation>label</translation>
     </message>
     <message>
-        <location line="+32"/>
-        <location line="+10"/>
-        <location line="+45"/>
-        <location line="+23"/>
-        <location line="+50"/>
+        <location line="+34"/>
+        <location line="+12"/>
+        <location line="+53"/>
+        <location line="+26"/>
+        <location line="+53"/>
         <source>Credit</source>
         <translation>Credit</translation>
     </message>
     <message numerus="yes">
-        <location line="-126"/>
+        <location line="-142"/>
         <source>matures in %n more block(s)</source>
         <translation>
             <numerusform>matures in %n more block</numerusform>
@@ -4431,14 +4426,14 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>not accepted</translation>
     </message>
     <message>
-        <location line="+49"/>
-        <location line="+22"/>
-        <location line="+50"/>
+        <location line="+59"/>
+        <location line="+25"/>
+        <location line="+53"/>
         <source>Debit</source>
         <translation>Debit</translation>
     </message>
     <message>
-        <location line="-63"/>
+        <location line="-68"/>
         <source>Total debit</source>
         <translation>Total debit</translation>
     </message>
@@ -4453,18 +4448,18 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Transaction fee</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+16"/>
         <source>Net amount</source>
         <translation>Net amount</translation>
     </message>
     <message>
         <location line="+6"/>
-        <location line="+10"/>
+        <location line="+9"/>
         <source>Message</source>
         <translation>Message</translation>
     </message>
     <message>
-        <location line="-8"/>
+        <location line="-7"/>
         <source>Comment</source>
         <translation>Comment</translation>
     </message>
@@ -4474,22 +4469,17 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Transaction ID</translation>
     </message>
     <message>
-        <location line="+1"/>
-        <source>Output index</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+16"/>
+        <location line="+18"/>
         <source>Merchant</source>
         <translation>Merchant</translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+7"/>
         <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
         <translation>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+8"/>
         <source>Debug information</source>
         <translation>Debug information</translation>
     </message>
@@ -4504,7 +4494,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Inputs</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+21"/>
         <source>Amount</source>
         <translation>Amount</translation>
     </message>
@@ -4537,7 +4527,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
 <context>
     <name>TransactionTableModel</name>
     <message>
-        <location filename="../transactiontablemodel.cpp" line="+213"/>
+        <location filename="../transactiontablemodel.cpp" line="+229"/>
         <source>Date</source>
         <translation>Date</translation>
     </message>
@@ -4552,7 +4542,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Address</translation>
     </message>
     <message numerus="yes">
-        <location line="+57"/>
+        <location line="+58"/>
         <source>Open for %n more block(s)</source>
         <translation>
             <numerusform>Open for %n more block</numerusform>
@@ -4600,7 +4590,12 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>This block was not received by any other nodes and will probably not be accepted!</translation>
     </message>
     <message>
-        <location line="+38"/>
+        <location line="+3"/>
+        <source>Generated but not accepted</source>
+        <translation>Generated but not accepted</translation>
+    </message>
+    <message>
+        <location line="+39"/>
         <source>Received with</source>
         <translation>Received with</translation>
     </message>
@@ -4616,27 +4611,27 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
     </message>
     <message>
         <location line="+2"/>
-        <source>Received via Obfuscation</source>
+        <source>Received via Darksend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+11"/>
-        <source>Obfuscation Denominate</source>
+        <source>Darksend Denominate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Obfuscation Collateral Payment</source>
+        <source>Darksend Collateral Payment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Obfuscation Make Collateral Inputs</source>
+        <source>Darksend Make Collateral Inputs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Obfuscation Create Denominations</source>
+        <source>Darksend Create Denominations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4645,12 +4640,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Sent to</translation>
     </message>
     <message>
-        <location line="-44"/>
-        <source>Orphan Block - Generated but not accepted. This does not impact your holdings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+46"/>
+        <location line="+2"/>
         <source>Payment to yourself</source>
         <translation>Payment to yourself</translation>
     </message>
@@ -4670,17 +4660,17 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Obfuscated</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+32"/>
         <source>watch-only</source>
         <translation>watch-only</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+20"/>
         <source>(n/a)</source>
         <translation>(n/a)</translation>
     </message>
     <message>
-        <location line="+200"/>
+        <location line="+212"/>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
         <translation>Transaction status. Hover over this field to show number of confirmations.</translation>
     </message>
@@ -4713,7 +4703,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
 <context>
     <name>TransactionView</name>
     <message>
-        <location filename="../transactionview.cpp" line="+68"/>
+        <location filename="../transactionview.cpp" line="+69"/>
         <location line="+17"/>
         <source>All</source>
         <translation>All</translation>
@@ -4759,33 +4749,33 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Received with</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>Sent to</source>
         <translation>Sent to</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>Obfuscated</source>
         <translation>Obfuscated</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Obfuscation Make Collateral Inputs</source>
+        <source>Darksend Make Collateral Inputs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Obfuscation Create Denominations</source>
+        <source>Darksend Create Denominations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Obfuscation Denominate</source>
+        <source>Darksend Denominate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Obfuscation Collateral Payment</source>
+        <source>Darksend Collateral Payment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4854,7 +4844,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Show transaction details</translation>
     </message>
     <message>
-        <location line="+193"/>
+        <location line="+201"/>
         <source>Export Transaction History</source>
         <translation>Export Transaction History</translation>
     </message>
@@ -4909,7 +4899,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>There was an error trying to save the transaction history to %1.</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>Exporting Successful</source>
         <translation>Exporting Successful</translation>
     </message>
@@ -4919,7 +4909,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>The transaction history was successfully saved to %1.</translation>
     </message>
     <message>
-        <location line="+117"/>
+        <location line="+126"/>
         <source>Range:</source>
         <translation>Range:</translation>
     </message>
@@ -4932,7 +4922,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
 <context>
     <name>UnitDisplayStatusBarControl</name>
     <message>
-        <location filename="../bitcoingui.cpp" line="+102"/>
+        <location filename="../bitcoingui.cpp" line="+115"/>
         <source>Unit to show amounts in. Click to select another unit.</source>
         <translation>Unit to show amounts in. Click to select another unit.</translation>
     </message>
@@ -4940,7 +4930,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
 <context>
     <name>WalletFrame</name>
     <message>
-        <location filename="../walletframe.cpp" line="+25"/>
+        <location filename="../walletframe.cpp" line="+26"/>
         <source>No wallet has been loaded.</source>
         <translation>No wallet has been loaded.</translation>
     </message>
@@ -4948,23 +4938,23 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
 <context>
     <name>WalletModel</name>
     <message>
-        <location filename="../walletmodel.cpp" line="+274"/>
+        <location filename="../walletmodel.cpp" line="+292"/>
         <location line="+9"/>
-        <location line="+9"/>
+        <location line="+11"/>
         <source>Send Coins</source>
         <translation>Send Coins</translation>
     </message>
     <message>
-        <location line="-18"/>
+        <location line="-20"/>
         <location line="+9"/>
-        <source>SwiftTX doesn&apos;t support sending values that high yet. Transactions are currently limited to %1 TIM.</source>
+        <source>InstantX doesn&apos;t support sending values that high yet. Transactions are currently limited to %1 TIM.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>WalletView</name>
     <message>
-        <location filename="../walletview.cpp" line="+49"/>
+        <location filename="../walletview.cpp" line="+52"/>
         <source>&amp;Export</source>
         <translation>&amp;Export</translation>
     </message>
@@ -4979,7 +4969,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>Selected amount:</translation>
     </message>
     <message>
-        <location line="+237"/>
+        <location line="+244"/>
         <source>Backup Wallet</source>
         <translation>Backup Wallet</translation>
     </message>
@@ -4999,7 +4989,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
         <translation>There was an error trying to save the wallet data to %1.</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>Backup Successful</source>
         <translation>Backup Successful</translation>
     </message>
@@ -5068,7 +5058,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
     </message>
     <message>
         <location line="+3"/>
-        <source>Disable all TimeIsMoney specific functionality (Masternodes, Obfuscation, SwiftTX, Budgeting) (0-1, default: %u)</source>
+        <source>Disable all TimeIsMoney specific functionality (Masternodes, Darksend, InstantX, Budgeting) (0-1, default: %u)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5078,12 +5068,12 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
     </message>
     <message>
         <location line="+3"/>
-        <source>Enable swifttx, show confirmations for locked transactions (bool, default: %s)</source>
-        <translation type="unfinished">Enable swifttx, show confirmations for locked transactions (bool, default: %s)</translation>
+        <source>Enable Instantx, show confirmations for locked transactions (bool, default: %s)</source>
+        <translation type="unfinished">Enable Instantx, show confirmations for locked transactions (bool, default: %s)</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Enable use of automated obfuscation for funds stored in this wallet (0-1, default: %u)</source>
+        <source>Enable use of automated Darksend for funds stored in this wallet (0-1, default: %u)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5178,12 +5168,17 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
     </message>
     <message>
         <location line="+3"/>
+        <source>Name to construct url for KeePass entry that stores the wallet passphrase</source>
+        <translation type="unfinished">Name to construct url for KeePass entry that stores the wallet passphrase</translation>
+    </message>
+    <message>
+        <location line="+2"/>
         <source>Number of seconds to keep misbehaving peers from reconnecting (default: %u)</source>
         <translation type="unfinished">Number of seconds to keep misbehaving peers from reconnecting (default: %u)</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Obfuscation uses exact denominated amounts to send funds, you might simply need to anonymize some more coins.</source>
+        <source>Darksend uses exact denominated amounts to send funds, you might simply need to anonymize some more coins.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5193,7 +5188,7 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
     </message>
     <message>
         <location line="+2"/>
-        <source>Provide liquidity to Obfuscation by infrequently mixing coins on a continual basis (0-100, default: %u, 1=very frequent, high fees, 100=very infrequent, low fees)</source>
+        <source>Provide liquidity to Darksend by infrequently mixing coins on a continual basis (0-100, default: %u, 1=very frequent, high fees, 100=very infrequent, low fees)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5233,8 +5228,8 @@ https://www.transifex.com/timeismoney-project/timeismoney-project-translations</
     </message>
     <message>
         <location line="+3"/>
-        <source>SwiftTX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
-        <translation type="unfinished">SwiftTX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</translation>
+        <source>InstantX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</source>
+        <translation type="unfinished">InstantX requires inputs with at least 6 confirmations, you might need to wait a few minutes and try again.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -5268,17 +5263,17 @@ for example: alertnotify=echo %%s | mail -s &quot;TimeIsMoney Alert&quot; admin@
     </message>
     <message>
         <location line="+2"/>
-        <source>Unable to locate enough Obfuscation denominated funds for this transaction.</source>
+        <source>Unable to locate enough Darksend denominated funds for this transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 TIM.</source>
+        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 TIM.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 TIM.</source>
+        <source>Unable to locate enough funds for this transaction that are not equal 1000 TIM.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5338,8 +5333,8 @@ for example: alertnotify=echo %%s | mail -s &quot;TimeIsMoney Alert&quot; admin@
     </message>
     <message>
         <location line="+3"/>
-        <source>(50020 could be used only on mainnet)</source>
-        <translation type="unfinished">(50020 could be used only on mainnet)</translation>
+        <source>(11333 could be used only on mainnet)</source>
+        <translation type="unfinished">(11333 could be used only on mainnet)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -5353,7 +5348,7 @@ for example: alertnotify=echo %%s | mail -s &quot;TimeIsMoney Alert&quot; admin@
     </message>
     <message>
         <location line="+1"/>
-        <source>(must be 50020 for mainnet)</source>
+        <source>(must be 11333 for mainnet)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5470,6 +5465,11 @@ for example: alertnotify=echo %%s | mail -s &quot;TimeIsMoney Alert&quot; admin@
     </message>
     <message>
         <location line="+1"/>
+        <source>Connect to KeePassHttp on port &lt;port&gt; (default: %u)</source>
+        <translation type="unfinished">Connect to KeePassHttp on port &lt;port&gt; (default: %u)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>Connect to a node to retrieve peer addresses, and disconnect</source>
         <translation type="unfinished">Connect to a node to retrieve peer addresses, and disconnect</translation>
     </message>
@@ -5485,12 +5485,17 @@ for example: alertnotify=echo %%s | mail -s &quot;TimeIsMoney Alert&quot; admin@
     </message>
     <message>
         <location line="+1"/>
-        <source>Copyright (C) 2014-%i The Dash Core Developers</source>
+        <source>Copyright (C) 2014-%i The Dash and PIVX Core Developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Copyright (C) 2015-%i The TimeIsMoney Core Developers</source>
+        <source>Copyright (C) 2015-%i The ALQO Core Developers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copyright (C) 2017-%i The TimeIsMoney Core Developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5630,7 +5635,7 @@ for example: alertnotify=echo %%s | mail -s &quot;TimeIsMoney Alert&quot; admin@
     </message>
     <message>
         <location line="+1"/>
-        <source>Error: You already have pending entries in the Obfuscation pool</source>
+        <source>Error: You already have pending entries in the Darksend pool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5800,6 +5805,16 @@ for example: alertnotify=echo %%s | mail -s &quot;TimeIsMoney Alert&quot; admin@
     </message>
     <message>
         <location line="+1"/>
+        <source>KeePassHttp id for the established association</source>
+        <translation type="unfinished">KeePassHttp id for the established association</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>KeePassHttp key for AES encrypted communication with KeePass</source>
+        <translation type="unfinished">KeePassHttp key for AES encrypted communication with KeePass</translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>Keep N TIM anonymized (default: %u)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5810,12 +5825,12 @@ for example: alertnotify=echo %%s | mail -s &quot;TimeIsMoney Alert&quot; admin@
     </message>
     <message>
         <location line="+1"/>
-        <source>Last Obfuscation was too recent.</source>
+        <source>Last Darksend was too recent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Last successful Obfuscation action was too recent.</source>
+        <source>Last successful Darksend action was too recent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5980,22 +5995,22 @@ for example: alertnotify=echo %%s | mail -s &quot;TimeIsMoney Alert&quot; admin@
     </message>
     <message>
         <location line="+1"/>
-        <source>Obfuscation is idle.</source>
+        <source>Darksend is idle.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Obfuscation options:</source>
+        <source>Darksend options:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Obfuscation request complete:</source>
+        <source>Darksend request complete:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Obfuscation request incomplete:</source>
+        <source>Darksend request incomplete:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6240,8 +6255,8 @@ for example: alertnotify=echo %%s | mail -s &quot;TimeIsMoney Alert&quot; admin@
     </message>
     <message>
         <location line="+1"/>
-        <source>SwiftTX options:</source>
-        <translation type="unfinished">SwiftTX options:</translation>
+        <source>InstantX options:</source>
+        <translation type="unfinished">InstantX options:</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -6370,6 +6385,11 @@ for example: alertnotify=echo %%s | mail -s &quot;TimeIsMoney Alert&quot; admin@
     </message>
     <message>
         <location line="+1"/>
+        <source>Use KeePass 2 integration using KeePassHttp plugin (default: %u)</source>
+        <translation type="unfinished">Use KeePass 2 integration using KeePassHttp plugin (default: %u)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>Use N separate masternodes to anonymize funds  (2-8, default: %u)</source>
         <translation type="unfinished">Use N separate masternodes to anonymize funds  (2-8, default: %u)</translation>
     </message>
@@ -6400,7 +6420,7 @@ for example: alertnotify=echo %%s | mail -s &quot;TimeIsMoney Alert&quot; admin@
     </message>
     <message>
         <location line="+1"/>
-        <source>Value more than Obfuscation pool maximum allows.</source>
+        <source>Value more than Darksend pool maximum allows.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6492,6 +6512,257 @@ for example: alertnotify=echo %%s | mail -s &quot;TimeIsMoney Alert&quot; admin@
         <location line="+1"/>
         <source>wallet.dat corrupt, salvage failed</source>
         <translation type="unfinished">wallet.dat corrupt, salvage failed</translation>
+    </message>
+</context>
+<context>
+    <name>tradingDialog</name>
+    <message>
+        <location filename="../forms/tradingdialog.ui" line="+14"/>
+        <source>Bittrex API</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>Order Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+52"/>
+        <source>Bids</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Asks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <location line="+16"/>
+        <source>label</source>
+        <translation type="unfinished">label</translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <location line="+16"/>
+        <location line="+2380"/>
+        <location line="+13"/>
+        <location line="+51"/>
+        <location line="+51"/>
+        <location line="+32"/>
+        <location line="+32"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-2537"/>
+        <source>Market History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Open Orders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <source>Advanced View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Trade history</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Buy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Buy TimeIsMoney</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <location line="+1155"/>
+        <source>Units</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1108"/>
+        <location line="+1192"/>
+        <location line="+517"/>
+        <source>TimeIsMoney</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1696"/>
+        <location line="+552"/>
+        <location line="+472"/>
+        <location line="+37"/>
+        <source>BTC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1042"/>
+        <location line="+1147"/>
+        <source>Bid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1128"/>
+        <location line="+1094"/>
+        <source>Order Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1076"/>
+        <location line="+1057"/>
+        <source>Max</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1005"/>
+        <location line="+2231"/>
+        <source>BTC Available:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1803"/>
+        <location line="+472"/>
+        <location line="+1812"/>
+        <location line="+19"/>
+        <location line="+38"/>
+        <source>0.00000000</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-2300"/>
+        <source>Total w/ 0.25% Fee</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+472"/>
+        <source>Sell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+177"/>
+        <source>Sell TimeIsMoney</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <location line="+1036"/>
+        <source>TimeIsMoney Available:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-608"/>
+        <source> 0.00000000 </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+41"/>
+        <source>Total w/ 0.25% Fee </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+431"/>
+        <source> 0.00000000</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source> BTC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Balance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+44"/>
+        <source>TimeIsMoney Balance:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>BTC Balance:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+51"/>
+        <source>TimeIsMoney Pending:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+64"/>
+        <source>BTC Pending:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+32"/>
+        <source>Bittrex TimeIsMoney Deposit Address:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Generate TimeIsMoney Deposit Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+158"/>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Convert VCoin:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+47"/>
+        <source>=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>$0.0000 / B0.00000000</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Update API Keys</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>API Key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+42"/>
+        <source>Secret Key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+68"/>
+        <source>0.000000000</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tradingdialog.cpp" line="+423"/>
+        <source>Cancel Order</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

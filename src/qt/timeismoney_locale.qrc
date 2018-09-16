@@ -1,17 +1,20 @@
 <!DOCTYPE RCC><RCC version="1.0">
     <qresource prefix="/translations">
-        <file alias="ca">locale/timeismoney_ca.qm</file>
-        <file alias="da">locale/timeismoney_da.qm</file>
+        <file alias="bg">locale/timeismoney_bg.qm</file>
         <file alias="de">locale/timeismoney_de.qm</file>
         <file alias="en">locale/timeismoney_en.qm</file>
-        <file alias="en_US">locale/timeismoney_en_US.qm</file>
         <file alias="es">locale/timeismoney_es.qm</file>
-        <file alias="fr_FR">locale/timeismoney_fr_FR.qm</file>
+        <file alias="fi">locale/timeismoney_fi.qm</file>
+        <file alias="fr">locale/timeismoney_fr.qm</file>
         <file alias="it">locale/timeismoney_it.qm</file>
         <file alias="ja">locale/timeismoney_ja.qm</file>
+        <file alias="pl">locale/timeismoney_pl.qm</file>
         <file alias="pt">locale/timeismoney_pt.qm</file>
-        <file alias="ro_RO">locale/timeismoney_ro_RO.qm</file>
         <file alias="ru">locale/timeismoney_ru.qm</file>
+        <file alias="sk">locale/timeismoney_sk.qm</file>
+        <file alias="sv">locale/timeismoney_sv.qm</file>
+        <file alias="vi">locale/timeismoney_vi.qm</file>
+        <file alias="zh_CN">locale/timeismoney_zh_CN.qm</file>
         <file alias="zh_TW">locale/timeismoney_zh_TW.qm</file>
     </qresource>
 </RCC>

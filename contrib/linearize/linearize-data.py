@@ -295,5 +295,3 @@ if __name__ == '__main__':
 		print("not found")
 	else:
 		BlockDataCopier(settings, blkindex, blkmap).run()
-
-

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  timeismoneyd The TimeIsMoney core server.
+#  timeismoneyd The TimeIsMoney Core server.
 #
 #
 # chkconfig: 345 80 20

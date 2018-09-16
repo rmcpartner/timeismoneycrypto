@@ -1,6 +1,13 @@
 Contents
-===========
+========
+
 This directory contains tools for developers working on this repository.
+
+check-doc.py
+============
+
+Check if all command line args are documented. The return value indicates the
+number of undocumented args.
 
 github-merge.py
 ===============
@@ -12,14 +19,13 @@ For example:
   ./github-merge.py 3077
 
 (in any git repository) will help you merge pull request #3077 for the
-TimeIsMoney-Project/TimeIsMoney repository.
+timeismoneycoin/timeismoney-core repository.
 
 What it does:
 * Fetch master and the pull request.
 * Locally construct a merge commit.
 * Show the diff that merge results in.
-* Ask you to verify the resulting source tree (so you can do a make
-check or whatever).
+* Ask you to verify the resulting source tree (so you can do a make check or whatever).
 * Ask you whether to GPG sign the merge commit.
 * Ask you whether to push the result upstream.
 
@@ -29,21 +35,21 @@ merge), and when using GPG signatures, that even a compromised GitHub
 couldn't mess with the sources.
 
 Setup
----------
+-----
+
 Configuring the github-merge tool for the TimeIsMoney repository is done in the following way:
 
-    git config githubmerge.repository TimeIsMoney-Project/TimeIsMoney
+    git config githubmerge.repository timeismoneycoin/timeismoney-core
     git config githubmerge.testcmd "make -j4 check" (adapt to whatever you want to use for testing)
     git config --global user.signingkey mykeyid (if you want to GPG sign)
 
 optimize-pngs.py
 ================
 
-A script to optimize png files in the TimeIsMoney
-repository (requires pngcrush).
+A script to optimize png files in the TimeIsMoney repository (requires pngcrush).
 
 fix-copyright-headers.py
-===========================
+========================
 
 Every year newly updated files need to have its copyright headers updated to reflect the current year.
 If you run this script from src/ it will automatically update the year on the copyright header for all

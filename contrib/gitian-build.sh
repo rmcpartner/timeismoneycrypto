@@ -17,7 +17,7 @@ osx=true
 SIGNER=
 VERSION=
 commit=false
-url=https://github.com/timeismoney-project/timeismoney
+url=https://github.com/timeismoneycoin/timeismoney-core
 proc=2
 mem=2000
 lxc=true
@@ -39,7 +39,7 @@ version		Version number, commit, or branch to build. If building a commit or bra
 
 Options:
 -c|--commit	Indicate that the version argument is for a commit or branch
--u|--url	Specify the URL of the repository. Default is https://github.com/timeismoney-project/timeismoney
+-u|--url	Specify the URL of the repository. Default is https://github.com/timeismoneycoin/timeismoney-core
 -v|--verify 	Verify the gitian build
 -b|--build	Do a gitian build
 -s|--sign	Make signed binaries for Windows and Mac OSX
@@ -232,8 +232,8 @@ echo ${COMMIT}
 if [[ $setup = true ]]
 then
     sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
-    git clone https://github.com/timeismoney-project/gitian.sigs.git
-    git clone https://github.com/timeismoney-project/timeismoney-detached-sigs.git
+    git clone https://github.com/timeismoneycoin/timeismoney-sigs
+    git clone https://github.com/timeismoneycoin/timeismoney-detached-sigs
     git clone https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
     if [[ -n "$USE_LXC" ]]
@@ -274,8 +274,8 @@ then
             echo ""
 	    echo "Compiling ${VERSION} Linux"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit timeismoney=${COMMIT} --url timeismoney=${url} ../timeismoney/contrib/gitian-descriptors/gitian-linux.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../timeismoney/contrib/gitian-descriptors/gitian-linux.yml
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit timeismoney=${COMMIT} --url timeismoney=${url} ../timeismoney-core/contrib/gitian-descriptors/gitian-linux.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../timeismoney-core/contrib/gitian-descriptors/gitian-linux.yml
 	    mv build/out/timeismoney-*.tar.gz build/out/src/timeismoney-*.tar.gz ../timeismoney-binaries/${VERSION}
 	fi
 	# Windows
@@ -284,8 +284,8 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit timeismoney=${COMMIT} --url timeismoney=${url} ../timeismoney/contrib/gitian-descriptors/gitian-win.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../timeismoney/contrib/gitian-descriptors/gitian-win.yml
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit timeismoney=${COMMIT} --url timeismoney=${url} ../timeismoney-core/contrib/gitian-descriptors/gitian-win.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../timeismoney-core/contrib/gitian-descriptors/gitian-win.yml
 	    mv build/out/timeismoney-*-win-unsigned.tar.gz inputs/timeismoney-win-unsigned.tar.gz
 	    mv build/out/timeismoney-*.zip build/out/timeismoney-*.exe ../timeismoney-binaries/${VERSION}
 	fi
@@ -295,8 +295,8 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit timeismoney=${COMMIT} --url timeismoney=${url} ../timeismoney/contrib/gitian-descriptors/gitian-osx.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../timeismoney/contrib/gitian-descriptors/gitian-osx.yml
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit timeismoney=${COMMIT} --url timeismoney=${url} ../timeismoney-core/contrib/gitian-descriptors/gitian-osx.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../timeismoney-core/contrib/gitian-descriptors/gitian-osx.yml
 	    mv build/out/timeismoney-*-osx-unsigned.tar.gz inputs/timeismoney-osx-unsigned.tar.gz
 	    mv build/out/timeismoney-*.tar.gz build/out/timeismoney-*.dmg ../timeismoney-binaries/${VERSION}
 	fi
@@ -325,27 +325,27 @@ then
 	echo ""
 	echo "Verifying v${VERSION} Linux"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../timeismoney/contrib/gitian-descriptors/gitian-linux.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../timeismoney-core/contrib/gitian-descriptors/gitian-linux.yml
 	# Windows
 	echo ""
 	echo "Verifying v${VERSION} Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../timeismoney/contrib/gitian-descriptors/gitian-win.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../timeismoney-core/contrib/gitian-descriptors/gitian-win.yml
 	# Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../timeismoney/contrib/gitian-descriptors/gitian-osx.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../timeismoney-core/contrib/gitian-descriptors/gitian-osx.yml
 	# Signed Windows
 	echo ""
 	echo "Verifying v${VERSION} Signed Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../timeismoney/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../timeismoney-core/contrib/gitian-descriptors/gitian-osx-signer.yml
 	# Signed Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Signed Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../timeismoney/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../timeismoney-core/contrib/gitian-descriptors/gitian-osx-signer.yml
 	popd
 fi
 
@@ -360,8 +360,8 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../timeismoney/contrib/gitian-descriptors/gitian-win-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../timeismoney/contrib/gitian-descriptors/gitian-win-signer.yml
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../timeismoney-core/contrib/gitian-descriptors/gitian-win-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../timeismoney-core/contrib/gitian-descriptors/gitian-win-signer.yml
 	    mv build/out/timeismoney-*win64-setup.exe ../timeismoney-binaries/${VERSION}
 	    mv build/out/timeismoney-*win32-setup.exe ../timeismoney-binaries/${VERSION}
 	fi
@@ -371,8 +371,8 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../timeismoney/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../timeismoney/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../timeismoney-core/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../timeismoney-core/contrib/gitian-descriptors/gitian-osx-signer.yml
 	    mv build/out/timeismoney-osx-signed.dmg ../timeismoney-binaries/${VERSION}/timeismoney-${VERSION}-osx.dmg
 	fi
 	popd

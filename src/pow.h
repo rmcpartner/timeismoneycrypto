@@ -7,7 +7,6 @@
 #define BITCOIN_POW_H
 
 #include <stdint.h>
-#include "hashblock.h"
 
 class CBlockHeader;
 class CBlockIndex;
@@ -25,7 +24,7 @@ enum DiffMode {
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock);
 
 /** Check whether a block hash satisfies the proof-of-work requirement specified by nBits */
-bool CheckProofOfWork(uint256 HashX11, unsigned int nBits);
+bool CheckProofOfWork(uint256 hash, unsigned int nBits);
 uint256 GetBlockProof(const CBlockIndex& block);
 
 #endif // BITCOIN_POW_H

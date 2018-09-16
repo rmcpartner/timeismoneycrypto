@@ -1,5 +1,6 @@
 Mac OS X Build Instructions and Notes
-====================================
+=====================================
+
 This guide will show you how to build timeismoneyd (headless client) for OSX.
 
 Notes
@@ -38,31 +39,38 @@ Instructions: Homebrew
 
 #### Install dependencies using Homebrew
 
-        brew install autoconf automake berkeley-db4 libtool boost miniupnpc openssl pkg-config protobuf qt5
+        brew install autoconf automake berkeley-db4 libtool boost@1.55 miniupnpc openssl pkg-config protobuf qt5
+        brew link --force boost@1.55
 
 ### Building `timeismoneyd`
 
 1. Clone the github tree to get the source code and go into the directory.
 
-        git clone https://github.com/TimeIsMoney-Project/TimeIsMoney.git
-        cd TimeIsMoney
+        git clone https://github.com/timeismoneycoin/timeismoney-core
+        cd timeismoney-core
 
-2.  Build timeismoneyd:
+2. Make the Homebrew OpenSSL headers visible to the configure script  (do ```brew info openssl``` to find out why this is necessary, or if you use Homebrew with installation folders different from the default).
+
+        export LDFLAGS=-L/usr/local/opt/openssl/lib
+        export CPPFLAGS=-I/usr/local/opt/openssl/include
+
+3. Build timeismoneyd:
 
         ./autogen.sh
         ./configure --with-gui=qt5
         make
 
-3.  It is also a good idea to build and run the unit tests:
+4. It is also a good idea to build and run the unit tests:
 
         make check
 
-4.  (Optional) You can also install timeismoneyd to your path:
+5. (Optional) You can also install timeismoneyd to your path:
 
         make install
 
 Use Qt Creator as IDE
-------------------------
+---------------------
+
 You can use Qt Creator as IDE, for debugging and for manipulating forms, etc.
 Download Qt Creator from http://www.qt.io/download/. Download the "community edition" and only install Qt Creator (uncheck the rest during the installation process).
 
@@ -79,9 +87,10 @@ Download Qt Creator from http://www.qt.io/download/. Download the "community edi
 
 Creating a release build
 ------------------------
+
 You can ignore this section if you are building `timeismoneyd` for your own use.
 
-timeismoneyd/timeismoney-cli binaries are not included in the timeismoney-Qt.app bundle.
+timeismoneyd/timeismoney-cli binaries are not included in the TimeIsMoney-Qt.app bundle.
 
 If you are building `timeismoneyd` or `timeismoney-qt` for others, your build machine should be set up
 as follows for maximum compatibility:
@@ -92,7 +101,7 @@ All dependencies should be compiled with these flags:
  -arch x86_64
  -isysroot $(xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk
 
-Once dependencies are compiled, see release-process.md for how the timeismoney-qt.app
+Once dependencies are compiled, see release-process.md for how the TimeIsMoney-Qt.app
 bundle is packaged and signed to create the .dmg disk image that is distributed.
 
 Running
@@ -113,8 +122,8 @@ you can monitor its process by looking at the debug.log file, like this:
 
     tail -f $HOME/Library/Application\ Support/TimeIsMoney/debug.log
 
-Other commands:
--------
+Other commands
+--------------
 
     ./timeismoneyd -daemon # to start the timeismoney daemon.
     ./timeismoney-cli --help  # for a list of command-line options.

@@ -1,6 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2015-2017 The PIVX developers 
+// Copyright (c) 2015-2017 The ALQO developers
 // Copyright (c) 2017-2018 The TimeIsMoney developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -8,8 +9,8 @@
 #include "transactionrecord.h"
 
 #include "base58.h"
-#include "obfuscation.h"
-#include "swifttx.h"
+#include "Darksend.h"
+#include "Instantx.h"
 #include "timedata.h"
 #include "wallet.h"
 
@@ -95,6 +96,61 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
                     // Generated
                     sub.type = TransactionRecord::Generated;
                 }
+				
+				int nHeight = chainActive.Height();
+				int64_t nSubsidy;
+
+				if(nHeight > 0 && nHeight <= 3600) {
+					nSubsidy = 2 * COIN;
+					if(nSubsidy / 100 * 0 == txout.nValue) {
+						sub.type = TransactionRecord::MNReward;
+					}
+				} else if (nHeight > 3600 && nHeight <= 15000) {
+					nSubsidy = 20 * COIN;
+					if(nSubsidy / 100 * 75 == txout.nValue) {
+						sub.type = TransactionRecord::MNReward;
+					}
+				} else if (nHeight > 15000 && nHeight <= 262800) {
+					nSubsidy = 20 * COIN;
+					if(nSubsidy / 100 * 50 == txout.nValue) {
+						sub.type = TransactionRecord::MNReward;
+					}
+				} else if (nHeight > 262800 && nHeight <= 525601) {
+					nSubsidy = 10 * COIN;
+					if(nSubsidy / 100 * 50 == txout.nValue) {
+						sub.type = TransactionRecord::MNReward;
+					}
+				} else if (nHeight > 525601 && nHeight <= 788401) {
+					nSubsidy = 5 * COIN;
+					if(nSubsidy / 100 * 50 == txout.nValue) {
+						sub.type = TransactionRecord::MNReward;
+					}
+				} else if (nHeight > 788401 && nHeight <= 1051201) {
+					nSubsidy = 2.5 * COIN;
+					if(nSubsidy / 100 * 50 == txout.nValue) {
+						sub.type = TransactionRecord::MNReward;
+					}
+				} else if (nHeight > 1051201 && nHeight <= 1314001) {
+					nSubsidy = 1.25 * COIN;
+					if(nSubsidy / 100 * 50 == txout.nValue) {
+						sub.type = TransactionRecord::MNReward;
+					}
+				} else if (nHeight > 1314001 && nHeight <= 1576800) {
+					nSubsidy = 0.625 * COIN;
+					if(nSubsidy / 100 * 50 == txout.nValue) {
+						sub.type = TransactionRecord::MNReward;
+					}
+				} else if (nHeight > 1576800 && nHeight <= 1839600) {
+					nSubsidy = 0.3125 * COIN;
+					if(nSubsidy / 100 * 50 == txout.nValue) {
+						sub.type = TransactionRecord::MNReward;
+					}
+				} else if (nHeight > 1839600) { // 299999 => LAST POW BLOCK
+					nSubsidy = 0 * COIN;
+					if(nSubsidy / 100 * 50 == txout.nValue) {
+						sub.type = TransactionRecord::MNReward;
+					}
+				}
 
                 parts.append(sub);
             }
@@ -128,7 +184,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
         }
 
         if (fAllFromMeDenom && fAllToMeDenom && nFromMe * nToMe) {
-            parts.append(TransactionRecord(hash, nTime, TransactionRecord::ObfuscationDenominate, "", -nDebit, nCredit));
+            parts.append(TransactionRecord(hash, nTime, TransactionRecord::DarksendDenominate, "", -nDebit, nCredit));
             parts.last().involvesWatchAddress = false; // maybe pass to TransactionRecord as constructor argument
         } else if (fAllFromMe && fAllToMe) {
             // Payment to self
@@ -155,9 +211,9 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
                     const CTxOut& txout = wtx.vout[nOut];
                     sub.idx = parts.size();
 
-                    if (wallet->IsCollateralAmount(txout.nValue)) sub.type = TransactionRecord::ObfuscationMakeCollaterals;
-                    if (wallet->IsDenominatedAmount(txout.nValue)) sub.type = TransactionRecord::ObfuscationCreateDenominations;
-                    if (nDebit - wtx.GetValueOut() == OBFUSCATION_COLLATERAL) sub.type = TransactionRecord::ObfuscationCollateralPayment;
+                    if (wallet->IsCollateralAmount(txout.nValue)) sub.type = TransactionRecord::DarksendMakeCollaterals;
+                    if (wallet->IsDenominatedAmount(txout.nValue)) sub.type = TransactionRecord::DarksendCreateDenominations;
+                    if (nDebit - wtx.GetValueOut() == DARKSEND_COLLATERAL) sub.type = TransactionRecord::DarksendCollateralPayment;
                 }
             }
 

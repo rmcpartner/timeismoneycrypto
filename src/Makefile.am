@@ -72,7 +72,7 @@ if BUILD_BITCOIN_UTILS
 endif
 
 .PHONY: FORCE
-# timeismoney core #
+# TimeIsMoney core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   addrman.h \
@@ -98,14 +98,14 @@ BITCOIN_CORE_H = \
   primitives/transaction.h \
   core_io.h \
   crypter.h \
-  obfuscation.h \
-  obfuscation-relay.h \
+  Darksend.h \
+  Darksend-relay.h \
   db.h \
   eccryptoverify.h \
-  ecwrapper.h \  
+  ecwrapper.h \
   init.h \
   kernel.h \
-  swifttx.h \
+  Instantx.h \
   key.h \
   keystore.h \
   leveldbwrapper.h \
@@ -180,7 +180,7 @@ obj/build.h: FORCE
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
 # server: shared between timeismoneyd and timeismoney-qt
-libbitcoin_server_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS)
+libbitcoin_server_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(BOOST_CPPFLAGS)
 libbitcoin_server_a_SOURCES = \
   addrman.cpp \
   alert.cpp \
@@ -227,15 +227,15 @@ endif
 # when wallet enabled
 
 libbitcoin_wallet_a_CFLAGS = -fPIC
-libbitcoin_wallet_a_CPPFLAGS = $(BITCOIN_INCLUDES)
+libbitcoin_wallet_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(BOOST_CPPFLAGS)
 libbitcoin_wallet_a_SOURCES = \
   activemasternode.cpp \
   bip38.cpp \
-  obfuscation.cpp \
-  obfuscation-relay.cpp \
+  Darksend.cpp \
+  Darksend-relay.cpp \
   db.cpp \
   crypter.cpp \
-  swifttx.cpp \
+  Instantx.cpp \
   masternode.cpp \
   masternode-budget.cpp \
   masternode-payments.cpp \
@@ -270,12 +270,19 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/cubehash.c \
   crypto/echo.c \
   crypto/groestl.c \
+  crypto/fugue.c \
+  crypto/hamsi.c \
   crypto/jh.c \
   crypto/keccak.c \
   crypto/luffa.c \
   crypto/shavite.c \
   crypto/simd.c \
   crypto/skein.c \
+  crypto/shabal.c \
+  crypto/whirlpool.c \
+  crypto/haval.c \
+  crypto/sha2.c \
+  crypto/sph_sha2big.c \
   crypto/ripemd160.h \
   crypto/sha1.cpp \
   crypto/sha1.h \
@@ -293,6 +300,12 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/sph_shavite.h \
   crypto/sph_simd.h \
   crypto/sph_skein.h \
+  crypto/sph_hamsi.h \
+  crypto/sph_fugue.h \
+  crypto/sph_shabal.h \
+  crypto/sph_whirlpool.h \
+  crypto/sph_sha2.h \
+  crypto/sph_haval.h \
   crypto/sph_types.h \
   crypto/sha512.cpp \
   crypto/sha512.h
@@ -462,7 +475,7 @@ endif
 
 libbitcoinconsensus_la_LDFLAGS = -no-undefined $(RELDFLAGS)
 libbitcoinconsensus_la_LIBADD = $(CRYPTO_LIBS) $(BOOST_LIBS)
-libbitcoinconsensus_la_CPPFLAGS = $(CRYPTO_CFLAGS) -I$(builddir)/obj -DBUILD_BITCOIN_INTERNAL
+libbitcoinconsensus_la_CPPFLAGS = $(CRYPTO_CFLAGS) $(BOOST_CPPFLAGS) -I$(builddir)/obj -DBUILD_BITCOIN_INTERNAL
 if USE_LIBSECP256K1
 libbitcoinconsensus_la_LIBADD += secp256k1/libsecp256k1.la
 endif

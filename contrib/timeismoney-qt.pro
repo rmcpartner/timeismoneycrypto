@@ -76,15 +76,15 @@ HEADERS += src/activemasternode.h \
            src/compressor.h \
            src/core_io.h \
            src/crypter.h \
-           src/obfuscation-relay.h \
-           src/obfuscation.h \
+           src/Darksend-relay.h \
+           src/Darksend.h \
            src/timeismoney-config.h \
            src/db.h \
            src/eccryptoverify.h \
            src/ecwrapper.h \
            src/hash.h \
            src/init.h \
-           src/swifttx.h \
+           src/Instantx.h \
            src/keepass.h \
            src/key.h \
            src/keystore.h \
@@ -111,7 +111,6 @@ HEADERS += src/activemasternode.h \
            src/rpcprotocol.h \
            src/rpcserver.h \
            src/serialize.h \
-		   src/hashblock.h \
            src/spork.h \
            src/streams.h \
            src/sync.h \
@@ -134,7 +133,6 @@ HEADERS += src/activemasternode.h \
            src/compat/sanity.h \
            src/config/timeismoney-config.h \
            src/crypto/common.h \
-		   src/crypto/scrypt.h \
            src/crypto/hmac_sha256.h \
            src/crypto/hmac_sha512.h \
            src/crypto/rfc6979_hmac_sha256.h \
@@ -177,7 +175,7 @@ HEADERS += src/activemasternode.h \
            src/qt/coincontroldialog.h \
            src/qt/coincontroltreewidget.h \
            src/qt/csvmodelwriter.h \
-           src/qt/obfuscationconfig.h \
+           src/qt/Darksendconfig.h \
            src/qt/editaddressdialog.h \
            src/qt/guiconstants.h \
            src/qt/guiutil.h \
@@ -190,6 +188,7 @@ HEADERS += src/activemasternode.h \
            src/qt/optionsdialog.h \
            src/qt/optionsmodel.h \
            src/qt/overviewpage.h \
+		   src/qt/coinmix.h \
            src/qt/paymentrequest.pb.h \
            src/qt/paymentrequestplus.h \
            src/qt/paymentserver.h \
@@ -338,18 +337,20 @@ HEADERS += src/activemasternode.h \
            src/qt/timeismoney.moc \
            src/qt/intro.moc \
            src/qt/overviewpage.moc \
+		   src/qt/coinmix.moc \
            src/qt/rpcconsole.moc \
            src/secp256k1/src/secp256k1.c
 FORMS += src/qt/forms/addressbookpage.ui \
          src/qt/forms/askpassphrasedialog.ui \
          src/qt/forms/coincontroldialog.ui \
-         src/qt/forms/obfuscationconfig.ui \
+         src/qt/forms/Darksendconfig.ui \
          src/qt/forms/editaddressdialog.ui \
          src/qt/forms/helpmessagedialog.ui \
          src/qt/forms/intro.ui \
          src/qt/forms/openuridialog.ui \
          src/qt/forms/optionsdialog.ui \
-         src/qt/forms/overviewpage.ui \
+		 src/qt/forms/overviewpage.ui \
+		 src/qt/forms/coinmix.ui \
          src/qt/forms/receivecoinsdialog.ui \
          src/qt/forms/receiverequestdialog.ui \
          src/qt/forms/rpcconsole.ui \
@@ -374,8 +375,8 @@ SOURCES += src/activemasternode.cpp \
            src/core_read.cpp \
            src/core_write.cpp \
            src/crypter.cpp \
-           src/obfuscation-relay.cpp \
-           src/obfuscation.cpp \
+           src/Darksend-relay.cpp \
+           src/Darksend.cpp \
            src/timeismoney-cli.cpp \
            src/timeismoney-tx.cpp \
            src/timeismoney.cpp \
@@ -385,7 +386,7 @@ SOURCES += src/activemasternode.cpp \
            src/editaddressdialog.cpp \
            src/hash.cpp \
            src/init.cpp \
-           src/swifttx.cpp \
+           src/Instantx.cpp \
            src/keepass.cpp \
            src/key.cpp \
            src/keystore.cpp \
@@ -437,7 +438,6 @@ SOURCES += src/activemasternode.cpp \
            src/compat/glibcxx_compat.cpp \
            src/compat/glibcxx_sanity.cpp \
            src/compat/strnlen.cpp \
-		   src/crypto/scrypt.cpp \
            src/crypto/aes_helper.c \
            src/crypto/blake.c \
            src/crypto/bmw.c \
@@ -473,7 +473,7 @@ SOURCES += src/activemasternode.cpp \
            src/qt/coincontroldialog.cpp \
            src/qt/coincontroltreewidget.cpp \
            src/qt/csvmodelwriter.cpp \
-           src/qt/obfuscationconfig.cpp \
+           src/qt/Darksendconfig.cpp \
            src/qt/timeismoney.cpp \
            src/qt/timeismoneystrings.cpp \
            src/qt/editaddressdialog.cpp \
@@ -485,6 +485,7 @@ SOURCES += src/activemasternode.cpp \
            src/qt/optionsdialog.cpp \
            src/qt/optionsmodel.cpp \
            src/qt/overviewpage.cpp \
+		   src/qt/coinmix.cpp \
            src/qt/paymentrequest.pb.cc \
            src/qt/paymentrequestplus.cpp \
            src/qt/paymentserver.cpp \

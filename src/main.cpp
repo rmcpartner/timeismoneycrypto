@@ -1,7 +1,8 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2015-2017 The PIVX developers 
+// Copyright (c) 2015-2017 The ALQO developers
 // Copyright (c) 2017-2018 The TimeIsMoney developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -20,10 +21,10 @@
 #include "masternodeman.h"
 #include "merkleblock.h"
 #include "net.h"
-#include "obfuscation.h"
+#include "Darksend.h"
 #include "pow.h"
 #include "spork.h"
-#include "swifttx.h"
+#include "Instantx.h"
 #include "txdb.h"
 #include "txmempool.h"
 #include "ui_interface.h"
@@ -76,8 +77,8 @@ int64_t nReserveBalance = 0;
  * We are ~100 times smaller then bitcoin now (2015-06-23), set minRelayTxFee only 10 times higher
  * so it's still 10 times lower comparing to bitcoin.
  */
+//CFeeRate minRelayTxFee = CFeeRate(250000);
 CFeeRate minRelayTxFee = CFeeRate(10000);
-
 CTxMemPool mempool(::minRelayTxFee);
 
 struct COrphanTx {
@@ -96,7 +97,7 @@ static void CheckBlockIndex();
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "DarkNet Signed Message:\n";
+const string strMessageMagic = "TimeIsMoney Signed Message:\n";
 
 // Internal stuff
 namespace
@@ -890,8 +891,8 @@ int GetInputAgeIX(uint256 nTXHash, CTxIn& vin)
         if (i != mapTxLocks.end()) {
             sigs = (*i).second.CountSignatures();
         }
-        if (sigs >= SWIFTTX_SIGNATURES_REQUIRED) {
-            return nSwiftTXDepth + nResult;
+        if (sigs >= INSTANTX_SIGNATURES_REQUIRED) {
+            return nInstantXDepth + nResult;
         }
     }
 
@@ -906,8 +907,8 @@ int GetIXConfirmations(uint256 nTXHash)
     if (i != mapTxLocks.end()) {
         sigs = (*i).second.CountSignatures();
     }
-    if (sigs >= SWIFTTX_SIGNATURES_REQUIRED) {
-        return nSwiftTXDepth;
+    if (sigs >= INSTANTX_SIGNATURES_REQUIRED) {
+        return nInstantXDepth;
     }
 
     return 0;
@@ -964,6 +965,11 @@ bool GetCoinAge(const CTransaction& tx, const unsigned int nTxTime, uint64_t& nC
     return true;
 }
 
+bool MoneyRange(CAmount nValueOut)
+{
+    return nValueOut >= 0 && nValueOut <= Params().MaxMoneyOut();
+}
+
 bool CheckTransaction(const CTransaction& tx, CValidationState& state)
 {
     // Basic checks that don't depend on any context
@@ -987,7 +993,7 @@ bool CheckTransaction(const CTransaction& tx, CValidationState& state)
         if (txout.nValue < 0)
             return state.DoS(100, error("CheckTransaction() : txout.nValue negative"),
                 REJECT_INVALID, "bad-txns-vout-negative");
-        if (txout.nValue > MAX_MONEY)
+        if (txout.nValue > Params().MaxMoneyOut())
             return state.DoS(100, error("CheckTransaction() : txout.nValue too high"),
                 REJECT_INVALID, "bad-txns-vout-toolarge");
         nValueOut += txout.nValue;
@@ -1018,6 +1024,7 @@ bool CheckTransaction(const CTransaction& tx, CValidationState& state)
 
     return true;
 }
+
 
 bool CheckFinalTx(const CTransaction& tx, int flags)
 {
@@ -1073,7 +1080,7 @@ CAmount GetMinRelayFee(const CTransaction& tx, unsigned int nBytes, bool fAllowF
     }
 
     if (!MoneyRange(nMinFee))
-        nMinFee = MAX_MONEY;
+        nMinFee = Params().MaxMoneyOut();
     return nMinFee;
 }
 
@@ -1109,7 +1116,7 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
     if (pool.exists(hash))
         return false;
 
-    // ----------- swiftTX transaction scanning -----------
+    // ----------- InstantX transaction scanning -----------
 
     BOOST_FOREACH (const CTxIn& in, tx.vin) {
         if (mapLockedInputs.count(in.prevout)) {
@@ -1199,7 +1206,7 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
 
         // Don't accept it if it can't get into a block
         // but prioritise dstx and don't check fees for it
-        if (mapObfuscationBroadcastTxes.count(hash)) {
+        if (mapDarksendBroadcastTxes.count(hash)) {
             mempool.PrioritiseTransaction(hash, hash.ToString(), 1000, 0.1 * COIN);
         } else if (!ignoreFees) {
             CAmount txMinFee = GetMinRelayFee(tx, nSize, true);
@@ -1272,13 +1279,19 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
 
 bool AcceptableInputs(CTxMemPool& pool, CValidationState& state, const CTransaction& tx, bool fLimitFree, bool* pfMissingInputs, bool fRejectInsaneFee, bool isDSTX)
 {
+	//AAAA
     AssertLockHeld(cs_main);
     if (pfMissingInputs)
         *pfMissingInputs = false;
-
-    if (!CheckTransaction(tx, state))
+	//if (txin.prevout == COutPoint(uint256("0xac087308fa106f388e559321641d7b6c66d8813ede54ebbdbe09a664eeba272e"), 0))
+    /*
+	BOOST_FOREACH (const CTxIn& txin, tx.vin) {
+    if (!CheckTransaction(tx, state) && (txin.prevout != COutPoint(uint256("0xac087308fa106f388e559321641d7b6c66d8813ede54ebbdbe09a664eeba272e"), 0)))
         return error("AcceptableInputs: : CheckTransaction failed");
-
+	}
+	*/
+	if (!CheckTransaction(tx, state))
+       return error("AcceptableInputs: : CheckTransaction failed");
     // Coinbase is only valid in a block, not as a loose transaction
     if (tx.IsCoinBase())
         return state.DoS(100, error("AcceptableInputs: : coinbase as individual tx"),
@@ -1297,7 +1310,7 @@ bool AcceptableInputs(CTxMemPool& pool, CValidationState& state, const CTransact
     if (pool.exists(hash))
         return false;
 
-    // ----------- swiftTX transaction scanning -----------
+    // ----------- InstantX transaction scanning -----------
 
     BOOST_FOREACH (const CTxIn& in, tx.vin) {
         if (mapLockedInputs.count(in.prevout)) {
@@ -1604,140 +1617,173 @@ double ConvertBitsToDouble(unsigned int nBits)
     }
 
     return dDiff;
-} 
+}
 
 int64_t GetBlockValue(int nHeight)
 {
-    int64_t nSubsidy = 0;
-
+ 
     if (Params().NetworkID() == CBaseChainParams::TESTNET) {
-        if (nHeight < 200 && nHeight > 0)
-            return 250000 * COIN;
+        if (nHeight < Params().LAST_POW_BLOCK()) {
+            return 1000 * COIN;
+        } else {
+            return 100 * COIN;
+        }
     }
 
+	if (nHeight == 0) return 5000000 * COIN;
 
-    if (nHeight == 1){
-      nSubsidy = 5000000 * COIN;
-    } else if (nHeight <= 75000 && nHeight > 1 ) {
-	    nSubsidy = 10 * COIN;
-    } else if (nHeight <= 150000 && nHeight > 75000) {
-        nSubsidy = 10.75 * COIN;
-    } else if (nHeight <= 225000 && nHeight > 150000) {
-        nSubsidy = 11.5 * COIN;
-	} else if (nHeight <= 300000 && nHeight > 225000) {
-        nSubsidy = 12.25 * COIN;
-	} else if(nHeight >= 375000 && nHeight < 300000){
-      nSubsidy = 13 * COIN;
-    } else if(nHeight >= 450000 && nHeight < 375000){
-      nSubsidy = 13.75 * COIN;
-    } else if(nHeight >= 525000 && nHeight < 450000){
-      nSubsidy = 14.5 * COIN;
-    } else if(nHeight >= 600000 && nHeight < 525000){
-      nSubsidy = 15.25 * COIN;
-    } else if(nHeight >= 675000 && nHeight < 600000){
-      nSubsidy = 16 * COIN;
-	} else if(nHeight >= 750000 && nHeight < 675000){
-      nSubsidy = 16.75 * COIN;
-	} else if(nHeight >= 825000 && nHeight < 750000){
-      nSubsidy = 17.5 * COIN;
-	} else if(nHeight >= 900000 && nHeight < 825000){
-      nSubsidy = 18.25 * COIN;
-	} else if(nHeight >= 975000 && nHeight < 900000){
-      nSubsidy = 19 * COIN;
-	} else if(nHeight >= 1050000 && nHeight < 975000){
-      nSubsidy = 19.75 * COIN;
-	} else if(nHeight >= 1125000 && nHeight < 1050000){
-      nSubsidy = 20.5 * COIN;
-	} else if(nHeight >= 1200000 && nHeight < 1125000){
-      nSubsidy = 21.25 * COIN;
-	} else if(nHeight >= 1275000 && nHeight < 1200000){
-      nSubsidy = 22 * COIN;
-	} else if(nHeight >= 1350000 && nHeight < 1275000){
-      nSubsidy = 22.75 * COIN;
-	} else if(nHeight >= 1425000 && nHeight < 1350000){
-      nSubsidy = 23.5 * COIN;
-	} else if(nHeight >= 1500000 && nHeight < 1425000){
-      nSubsidy = 24.25 * COIN;
-	} else if(nHeight >= 1575000 && nHeight < 1500000){
-      nSubsidy = 25 * COIN;
-	} else if(nHeight >= 1625000 && nHeight < 1575000){
-      nSubsidy = 25.75 * COIN;
-	} else if(nHeight >= 1700000 && nHeight < 1625000){
-      nSubsidy = 26.5 * COIN;
-	} else if(nHeight >= 1775000 && nHeight < 1700000){
-      nSubsidy = 27.25 * COIN;
-	} else if(nHeight >= 1850000 && nHeight < 1775000){
-      nSubsidy = 28 * COIN;
-	} else if(nHeight >= 1925000 && nHeight < 1850000){
-      nSubsidy = 28.75 * COIN;
-	} else if(nHeight >= 2000000 && nHeight < 1925000){
-      nSubsidy = 29.5 * COIN;
-	} else if(nHeight >= 2075000 && nHeight < 2000000){
-      nSubsidy = 30.25 * COIN;
-	} else if(nHeight >= 2125000 && nHeight < 2075000){
-      nSubsidy = 31 * COIN;
-	} else if(nHeight >= 2200000 && nHeight < 2125000){
-      nSubsidy = 31.75 * COIN;
-	} else if(nHeight >= 2275000 && nHeight < 2200000){
-      nSubsidy = 32.5 * COIN;
-	} else if(nHeight >= 2350000 && nHeight < 2275000){
-      nSubsidy = 33.25 * COIN;
-	 } else if(nHeight >= 2425000 && nHeight < 2350000){
-      nSubsidy = 34 * COIN;
-	} else if(nHeight >= 2500000 && nHeight < 2425000){
-      nSubsidy = 34.75 * COIN;
-	} else if(nHeight >= 2575000 && nHeight < 2500000){
-      nSubsidy = 35.5 * COIN;
-	} else if(nHeight >= 2650000 && nHeight < 2575000){
-      nSubsidy = 36.25 * COIN;
-	} else if(nHeight >= 2725000 && nHeight < 2650000){
-      nSubsidy = 37 * COIN;
-	} else if(nHeight >= 2800000 && nHeight < 2725000){
-      nSubsidy = 37.75 * COIN;
-	} else if(nHeight >= 2875000 && nHeight < 2800000){
-      nSubsidy = 38.5 * COIN;
-	} else if(nHeight >= 2950000 && nHeight < 2875000){
-      nSubsidy = 39.25 * COIN;
-	} else if(nHeight >= 3025000 && nHeight < 2950000){
-      nSubsidy = 40 * COIN;
-	} else if(nHeight >= 3100000 && nHeight < 3025000){
-      nSubsidy = 40.75 * COIN;
-	} else if(nHeight >= 3175000 && nHeight < 3100000){
-      nSubsidy = 41.5 * COIN;
-	} else if(nHeight >= 3250000 && nHeight < 3175000){
-      nSubsidy = 42.25 * COIN;
-	} else if(nHeight >= 3000000 && nHeight < 3250000){
-      nSubsidy = 43 * COIN;
-	} else if(nHeight >= 5000000 && nHeight < 3000000){
-      nSubsidy = 0.01 * COIN;
-	} else if(nHeight >= 7000000 && nHeight < 5000000){
-      nSubsidy = 0.01 * COIN;
-    } else{
-      nSubsidy = 0 * COIN;
-    }
+	int64_t nSubsidy = 0;
+
+	if(nHeight > 0 && nHeight <= 75000) {
+        nSubsidy = 10 * COIN;
+	} else if (nHeight > 75000 && nHeight <= 150000) {
+		nSubsidy = 10.75 * COIN;
+	} else if (nHeight > 150000 && nHeight <= 225000) {
+		nSubsidy = 11.5 * COIN;
+	} else if (nHeight > 225000 && nHeight <= 300000) {
+		nSubsidy = 12.25 * COIN;
+	} else if (nHeight > 300000 && nHeight <= 375000) {
+		nSubsidy = 13 * COIN;
+	} else if (nHeight > 375000 && nHeight <= 450000) {
+		nSubsidy = 13.75 * COIN;
+	} else if (nHeight > 450000 && nHeight <= 525000) {
+		nSubsidy = 14.5 * COIN;
+	} else if (nHeight > 525000 && nHeight <= 600000) {
+		nSubsidy = 15.25 * COIN;
+	} else if (nHeight > 600000 && nHeight <= 675000) {
+		nSubsidy = 16 * COIN;
+	} else if (nHeight > 675000 && nHeight <= 750000) {
+		nSubsidy = 16.75 * COIN;
+	} else if (nHeight > 750000 && nHeight <= 825000) {
+		nSubsidy = 17.5 * COIN;
+	} else if (nHeight > 825000 && nHeight <= 900000) {
+		nSubsidy = 18.25 * COIN;
+	} else if (nHeight > 900000 && nHeight <= 975000) {
+		nSubsidy = 19 * COIN;
+	} else if (nHeight > 975000 && nHeight <= 1050000) {
+		nSubsidy = 19.75 * COIN;
+	} else if (nHeight > 1050000 && nHeight <= 1125000) {
+		nSubsidy = 20.5 * COIN;
+	} else if (nHeight > 1125000 && nHeight <= 1200000) {
+		nSubsidy = 21.25 * COIN;
+	} else if (nHeight > 1200000 && nHeight <= 1275000) {
+		nSubsidy = 22 * COIN;
+	} else if (nHeight > 1275000 && nHeight <= 1350000) {
+		nSubsidy = 22.75 * COIN;
+	} else if (nHeight > 1350000 && nHeight <= 1425000) {
+		nSubsidy = 23.5 * COIN;
+	} else if (nHeight > 1425000 && nHeight <= 1500000) {
+		nSubsidy = 24.25 * COIN;
+	} else if (nHeight > 1500000 && nHeight <= 1575000) {
+		nSubsidy = 25 * COIN;
+	} else if (nHeight > 1575000 && nHeight <= 1625000) {
+		nSubsidy = 25.75 * COIN;
+	} else if (nHeight > 1625000 && nHeight <= 1700000) {
+		nSubsidy = 26.5 * COIN;
+	} else if (nHeight > 1700000 && nHeight <= 1775000) {
+		nSubsidy = 27.25 * COIN;
+	} else if (nHeight > 1775000 && nHeight <= 1850000) {
+		nSubsidy = 28 * COIN;
+	} else if (nHeight > 1850000 && nHeight <= 1925000) {
+		nSubsidy = 28.75 * COIN;
+	} else if (nHeight > 1925000 && nHeight <= 2000000) {
+		nSubsidy = 29.5 * COIN;
+	} else if (nHeight > 2000000 && nHeight <= 2075000) {
+		nSubsidy = 30.25 * COIN;
+	} else if (nHeight > 2075000 && nHeight <= 2105000) {
+		nSubsidy = 31 * COIN;
+	} else if (nHeight > 2105000 && nHeight <= 2125000) {
+		nSubsidy = 31.75 * COIN;
+	} else if (nHeight > 2125000 && nHeight <= 2200000) {
+		nSubsidy = 32.5 * COIN;
+	} else if (nHeight > 2200000 && nHeight <= 2275000) {
+		nSubsidy = 33.25 * COIN;
+	} else if (nHeight > 2275000 && nHeight <= 2350000) {
+		nSubsidy = 34 * COIN;
+	} else if (nHeight > 2350000 && nHeight <= 2425000) {
+		nSubsidy = 34.75 * COIN;
+    } else if (nHeight > 2425000 && nHeight <= 2500000) {
+		nSubsidy = 35.5 * COIN;
+	} else if (nHeight > 2500000 && nHeight <= 2575000) {
+		nSubsidy = 36.25 * COIN;
+	} else if (nHeight > 2575000 && nHeight <= 2650000) {
+		nSubsidy = 37 * COIN;
+    } else if (nHeight > 2650000 && nHeight <= 2725000) {
+		nSubsidy = 37.75 * COIN;
+	} else if (nHeight > 2725000 && nHeight <= 2800000) {
+		nSubsidy = 38.5 * COIN;
+	} else if (nHeight > 2800000 && nHeight <= 2875000) {
+		nSubsidy = 39.25 * COIN;
+	} else if (nHeight > 2875000 && nHeight <= 2950000) {
+		nSubsidy = 40 * COIN;
+	} else if (nHeight > 2950000 && nHeight <= 2875000) {
+		nSubsidy = 40.75 * COIN;
+	} else if (nHeight > 2875000 && nHeight <= 2950000) {
+		nSubsidy = 41.5 * COIN;
+	} else if (nHeight > 2950000 && nHeight <= 3025000) {
+		nSubsidy = 42.25 * COIN;
+	} else if (nHeight > 3025000 && nHeight <= 3100000) {
+		nSubsidy = 43 * COIN;
+	} else if (nHeight > 3100000 && nHeight <= 3175000) {
+		nSubsidy = 0.01 * COIN;
+	} else if (nHeight > 3175000 && nHeight <= 3250000) {
+		nSubsidy = 0.01 * COIN;
+	} else if (nHeight > 3250000) {
+		nSubsidy = 0 * COIN;
+	}
 
     return nSubsidy;
+
 }
 
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount)
 {
-    int64_t ret = 0;
-
     if (Params().NetworkID() == CBaseChainParams::TESTNET) {
-        if (nHeight < 200)
-            return 0;
+        return blockValue / 100 * 10;
     }
 	
-	if (nHeight == 0)
-		return 0;
-	
-    if (nHeight < 50) {
-        ret = 0;
-    } else {
-		ret = blockValue * 0.7;
-	}
+	int64_t ret = 0;
 
-    return ret;
+	if(nHeight > 0 && nHeight <= 25000) {
+        ret = blockValue / 100 * 75;
+	} else if (nHeight > 25000 && nHeight <= 199999) {
+        ret = blockValue / 100 * 75;
+	} else if (nHeight > 199999 && nHeight <= 2839600) {
+        ret = blockValue / 100 * 75;
+	} else if (nHeight > 2839600 && nHeight <= 4839600) {
+        ret = blockValue / 100 * 75;
+	} else if (nHeight > 4839600) {
+		int64_t nMoneySupply = chainActive.Tip()->nMoneySupply;
+
+		if(nMasternodeCount < 1) {
+			nMasternodeCount = mnodeman.stable_size();
+		}
+
+		int64_t mNodeCoins = nMasternodeCount * 1000 * COIN;
+
+		if (mNodeCoins == 0) {
+            ret = 0;
+		} else {
+			double lockedCoinValue = mNodeCoins / nMoneySupply;
+
+			double masternodeMultiplier = 1 - lockedCoinValue;
+
+			if(masternodeMultiplier < .1) {
+				masternodeMultiplier = .1;
+			} else if(masternodeMultiplier > .9) {
+				masternodeMultiplier = .9;
+			}
+
+			LogPrintf("[LIBRA] Adjusting Libra at height %d with %d masternodes (%d % locked TimeIsMoney) and %d TimeIsMoney supply at %ld\n", nHeight, nMasternodeCount, lockedCoinValue*100, nMoneySupply, GetTime());
+			LogPrintf("[LIBRA] Masternode: %d\n", masternodeMultiplier*100);
+			LogPrintf("[LIBRA] Staker: %d\n", (1 - masternodeMultiplier)*100);
+			
+			ret = blockValue * masternodeMultiplier;
+		}
+		
+	}
+	
+	return ret;
 }
 
 bool IsInitialBlockDownload()
@@ -2175,17 +2221,17 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     // Now that the whole chain is irreversibly beyond that time it is applied to all blocks except the
     // two in the chain that violate it. This prevents exploiting the issue against nodes in their
     // initial block download.
-    bool fEnforceBIP30 = (!pindex->phashBlock) || // Enforce on CreateNewBlock invocations which don't have a hash.
-                         !((pindex->nHeight == 91842 && pindex->GetBlockHash() == uint256("0x00000000000a4d0a398161ffc163c503763b1f4360639393e0e4c8e300e0caec")) ||
-                             (pindex->nHeight == 91880 && pindex->GetBlockHash() == uint256("0x00000000000743f190a18c5577a3c2d2a1f610ae9601ac046a38084ccb7cd721")));
-    if (fEnforceBIP30) {
+    //bool fEnforceBIP30 = (!pindex->phashBlock) || // Enforce on CreateNewBlock invocations which don't have a hash.
+    //                     !((pindex->nHeight == 91842 && pindex->GetBlockHash() == uint256("0x00000000000a4d0a398161ffc163c503763b1f4360639393e0e4c8e300e0caec")) ||
+    //                         (pindex->nHeight == 91880 && pindex->GetBlockHash() == uint256("0x00000000000743f190a18c5577a3c2d2a1f610ae9601ac046a38084ccb7cd721")));
+    //if (fEnforceBIP30) {
         BOOST_FOREACH (const CTransaction& tx, block.vtx) {
             const CCoins* coins = view.AccessCoins(tx.GetHash());
             if (coins && !coins->IsPruned())
                 return state.DoS(100, error("ConnectBlock() : tried to overwrite transaction"),
                     REJECT_INVALID, "bad-txns-BIP30");
         }
-    }
+    //}
 
     // BIP16 didn't become active until Apr 1 2012
     int64_t nBIP16SwitchTime = 1333238400;
@@ -2193,8 +2239,10 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
     unsigned int flags = fStrictPayToScriptHash ? SCRIPT_VERIFY_P2SH : SCRIPT_VERIFY_NONE;
 
-    // DERSIG (BIP66) rules:
-    flags |= SCRIPT_VERIFY_DERSIG;
+    // Start enforcing the DERSIG (BIP66) rules, for block.nVersion=3 blocks, when 75% of the network has upgraded:
+    if (block.nVersion >= 3 && CBlockIndex::IsSuperMajority(3, pindex->pprev, Params().EnforceBlockUpgradeMajority())) {
+        flags |= SCRIPT_VERIFY_DERSIG;
+    }
 
     CBlockUndo blockundo;
 
@@ -2208,8 +2256,8 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     std::vector<std::pair<uint256, CDiskTxPos> > vPos;
     vPos.reserve(block.vtx.size());
     blockundo.vtxundo.reserve(block.vtx.size() - 1);
-    int64_t nValueOut = 0;
-    int64_t nValueIn = 0;
+    CAmount nValueOut = 0;
+    CAmount nValueIn = 0;
     for (unsigned int i = 0; i < block.vtx.size(); i++) {
         const CTransaction& tx = block.vtx[i];
 
@@ -2219,7 +2267,12 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             return state.DoS(100, error("ConnectBlock() : too many sigops"),
                 REJECT_INVALID, "bad-blk-sigops");
 
-        if (!tx.IsCoinBase()) {
+        if (tx.IsCoinBase())
+        {
+            nValueOut += tx.GetValueOut();
+        }
+        else
+        {
             if (!view.HaveInputs(tx))
                 return state.DoS(100, error("ConnectBlock() : inputs missing/spent"),
                     REJECT_INVALID, "bad-txns-inputs-missingorspent");
@@ -2234,15 +2287,19 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                         REJECT_INVALID, "bad-blk-sigops");
             }
 
-            nFees += view.GetValueIn(tx) - tx.GetValueOut();
-            nValueIn += view.GetValueIn(tx);
+
+            CAmount nTxValueIn = view.GetValueIn(tx);
+            CAmount nTxValueOut = tx.GetValueOut();
+            nValueIn += nTxValueIn;
+            nValueOut += nTxValueOut;
+            if (!tx.IsCoinStake())
+                nFees += nTxValueIn - nTxValueOut;
 
             std::vector<CScriptCheck> vChecks;
             if (!CheckInputs(tx, state, view, fScriptChecks, flags, false, nScriptCheckThreads ? &vChecks : NULL))
                 return false;
             control.Add(vChecks);
         }
-        nValueOut += tx.GetValueOut();
 
         CTxUndo undoDummy;
         if (i > 0) {
@@ -2254,9 +2311,18 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         pos.nTxOffset += ::GetSerializeSize(tx, SER_DISK, CLIENT_VERSION);
     }
 
-    // ppcoin: track money supply and mint amount info
+    CAmount nMoneySupplyPrev = pindex->pprev ? pindex->pprev->nMoneySupply : 0;
     pindex->nMint = nValueOut - nValueIn + nFees;
-    pindex->nMoneySupply = (pindex->pprev ? pindex->pprev->nMoneySupply : 0) + nValueOut - nValueIn;
+    pindex->nMoneySupply = nMoneySupplyPrev + nValueOut - nValueIn;
+
+    //lost-fee-issue
+    CAmount nExpectedMint = GetBlockValue(pindex->pprev->nHeight) + nFees;
+    if (!IsBlockValueValid(block, nExpectedMint, pindex->nMint)) {
+        return state.DoS(100,
+            error("ConnectBlock() : reward pays too much (actual=%s vs limit=%s)",
+                FormatMoney(pindex->nMint), FormatMoney(nExpectedMint)),
+            REJECT_INVALID, "bad-cb-amount");
+    }
 
     if (!pblocktree->WriteBlockIndex(CDiskBlockIndex(pindex)))
         return error("Connect() : WriteBlockIndex for pindex failed");
@@ -2264,13 +2330,6 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     int64_t nTime1 = GetTimeMicros();
     nTimeConnect += nTime1 - nTimeStart;
     LogPrint("bench", "      - Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin) [%.2fs]\n", (unsigned)block.vtx.size(), 0.001 * (nTime1 - nTimeStart), 0.001 * (nTime1 - nTimeStart) / block.vtx.size(), nInputs <= 1 ? 0 : 0.001 * (nTime1 - nTimeStart) / (nInputs - 1), nTimeConnect * 0.000001);
-
-    if (!IsInitialBlockDownload() && !IsBlockValueValid(block, GetBlockValue(pindex->pprev->nHeight))) {
-        return state.DoS(100,
-            error("ConnectBlock() : reward pays too much (actual=%d vs limit=%d)",
-                block.vtx[0].GetValueOut(), GetBlockValue(pindex->pprev->nHeight)),
-            REJECT_INVALID, "bad-cb-amount");
-    }
 
     if (!control.Wait())
         return state.DoS(100, false);
@@ -2567,7 +2626,7 @@ bool DisconnectBlocksAndReprocess(int blocks)
 /*
     DisconnectBlockAndInputs
 
-    Remove conflicting blocks for successful SwiftTX transaction locks
+    Remove conflicting blocks for successful InstantX transaction locks
     This should be very rare (Probably will never happen)
 */
 // ***TODO*** clean up here
@@ -3115,10 +3174,17 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
 
     // Check that the header is valid (particularly PoW).  This is mostly
     // redundant with the call in AcceptBlockHeader.
-    if (block.IsProofOfWork() && !CheckBlockHeader(block, state, fCheckPOW))
-        return state.DoS(100, error("CheckBlock() : CheckBlockHeader failed"),
-            REJECT_INVALID, "bad-header", true);
 
+    if(block.IsProofOfWork()){
+		if (!CheckBlockHeader(block, state, fCheckPOW))
+			return state.DoS(100, error("CheckBlock() : CheckBlockHeader failed"),
+				REJECT_INVALID, "bad-header", true);
+}
+			/*
+			    if (!CheckBlockHeader(block, state, block.IsProofOfWork()))
+        return state.DoS(100, error("CheckBlock() : CheckBlockHeader failed"),
+REJECT_INVALID, "bad-header", true);
+*/
     // Check timestamp
     LogPrint("debug", "%s: block=%s  is proof of stake=%d\n", __func__, block.GetHash().ToString().c_str(), block.IsProofOfStake());
     if (block.GetBlockTime() > GetAdjustedTime() + (block.IsProofOfStake() ? 180 : 7200)) // 3 minute future drift for PoS
@@ -3173,9 +3239,9 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 return state.DoS(100, error("CheckBlock() : more than one coinstake"));
     }
 
-    // ----------- swiftTX transaction scanning -----------
+    // ----------- InstantX transaction scanning -----------
 
-    if (IsSporkActive(SPORK_3_SWIFTTX_BLOCK_FILTERING)) {
+    if (IsSporkActive(SPORK_3_INSTANTX_BLOCK_FILTERING)) {
         BOOST_FOREACH (const CTransaction& tx, block.vtx) {
             if (!tx.IsCoinBase()) {
                 //only reject blocks when it's based on complete consensus
@@ -3221,11 +3287,11 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
     }
 
     // -------------------------------------------
-
+   //if (!CheckTransaction(tx, state) != (block.vtx == COutPoint(uint256("0xac087308fa106f388e559321641d7b6c66d8813ede54ebbdbe09a664eeba272e"), 0)) )
     // Check transactions
-    BOOST_FOREACH (const CTransaction& tx, block.vtx)
-        if (!CheckTransaction(tx, state))
-            return error("CheckBlock() : CheckTransaction failed");
+     BOOST_FOREACH (const CTransaction& tx, block.vtx)
+     if (!CheckTransaction(tx, state))
+     return error("CheckBlock() : CheckTransaction failed");
 
     unsigned int nSigOps = 0;
     BOOST_FOREACH (const CTransaction& tx, block.vtx) {
@@ -3244,7 +3310,7 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
         return error("%s : null pindexPrev for block %s", __func__, block.GetHash().ToString().c_str());
 
     unsigned int nBitsRequired = GetNextWorkRequired(pindexPrev, &block);
-
+/*
     if (block.IsProofOfWork() && (pindexPrev->nHeight + 1 <= 68589)) {
         double n1 = ConvertBitsToDouble(block.nBits);
         double n2 = ConvertBitsToDouble(nBitsRequired);
@@ -3254,7 +3320,8 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
 
         return true;
     }
-
+*/
+	
     if (block.nBits != nBitsRequired)
         return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
 
@@ -3306,15 +3373,42 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
         return state.DoS(0, error("%s : forked chain older than last checkpoint (height %d)", __func__, nHeight));
 
     // Reject block.nVersion=1 blocks when 95% (75% on testnet) of the network has upgraded:
-    if (block.nVersion < 2) {
+    if (block.nVersion < 2 &&
+        CBlockIndex::IsSuperMajority(2, pindexPrev, Params().RejectBlockOutdatedMajority())) {
         return state.Invalid(error("%s : rejected nVersion=1 block", __func__),
             REJECT_OBSOLETE, "bad-version");
     }
 
     // Reject block.nVersion=2 blocks when 95% (75% on testnet) of the network has upgraded:
-    if (block.nVersion < 3) {
+    if (block.nVersion < 3 && CBlockIndex::IsSuperMajority(3, pindexPrev, Params().RejectBlockOutdatedMajority())) {
         return state.Invalid(error("%s : rejected nVersion=2 block", __func__),
             REJECT_OBSOLETE, "bad-version");
+    }
+
+    return true;
+}
+
+bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIndex* const pindexPrev)
+{
+    const int nHeight = pindexPrev == NULL ? 0 : pindexPrev->nHeight + 1;
+
+    // Check that all transactions are finalized
+    BOOST_FOREACH (const CTransaction& tx, block.vtx)
+        if (!IsFinalTx(tx, nHeight, block.GetBlockTime())) {
+            return state.DoS(10, error("%s : contains a non-final transaction", __func__), REJECT_INVALID, "bad-txns-nonfinal");
+        }
+	
+	//Script expect = CScript() << nHeight;
+	//AAAA
+    // Enforce block.nVersion=2 rule that the coinbase starts with serialized block height
+    // if 750 of the last 1,000 blocks are version 2 or greater (51/100 if testnet):
+    if (block.nVersion >= 2 &&
+        CBlockIndex::IsSuperMajority(2, pindexPrev, Params().EnforceBlockUpgradeMajority())) {
+        CScript expect = CScript() << nHeight;
+        if (block.vtx[0].vin[0].scriptSig.size() < expect.size() || !std::equal(expect.begin(), expect.end(), block.vtx[0].vin[0].scriptSig.begin())) {
+		//	LogPrintf("SuperMajorityCheck(): Script size %d, except size %d,block.vtx[0].vin[0].scriptSig.size(), expect.size() );
+           return state.DoS(100, error("%s : block height mismatch in coinbase", __func__), REJECT_INVALID, "bad-cb-height");
+        }
     }
 
     return true;
@@ -3396,7 +3490,7 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
         return true;
     }
 
-    if ((!CheckBlock(block, state))) {
+    if ((!CheckBlock(block, state)) || !ContextualCheckBlock(block, state, pindex->pprev)) {
         if (state.IsInvalid() && !state.CorruptionPossible()) {
             pindex->nStatus |= BLOCK_FAILED_VALID;
             setDirtyBlockIndex.insert(pindex);
@@ -3424,6 +3518,18 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
     }
 
     return true;
+}
+
+bool CBlockIndex::IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned int nRequired)
+{
+    unsigned int nToCheck = Params().ToCheckBlockUpgradeMajority();
+    unsigned int nFound = 0;
+    for (unsigned int i = 0; i < nToCheck && nFound < nRequired && pstart != NULL; i++) {
+        if (pstart->nVersion >= minVersion)
+            ++nFound;
+        pstart = pstart->pprev;
+    }
+    return (nFound >= nRequired);
 }
 
 /** Turn the lowest '1' bit in the binary representation of a number into a '0'. */
@@ -3499,12 +3605,8 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, CBlock* pblock, CDis
         }
     }
 
-    while (true) {
-        TRY_LOCK(cs_main, lockMain);
-        if (!lockMain) {
-            MilliSleep(50);
-            continue;
-        }
+    {
+        LOCK(cs_main);   // Replaces the former TRY_LOCK loop because busy waiting wastes too much resources
 
         MarkBlockAsReceived(pblock->GetHash());
         if (!checked) {
@@ -3520,7 +3622,6 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, CBlock* pblock, CDis
         CheckBlockIndex();
         if (!ret)
             return error("%s : AcceptBlock FAILED", __func__);
-        break;
     }
 
     if (!ActivateBestChain(state, pblock))
@@ -3528,7 +3629,7 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, CBlock* pblock, CDis
 
     if (!fLiteMode) {
         if (masternodeSync.RequestedMasternodeAssets > MASTERNODE_SYNC_LIST) {
-            obfuScationPool.NewBlock();
+            DarKsendPool.NewBlock();
             masternodePayments.ProcessBlock(GetHeight() + 10);
             budget.NewBlock();
         }
@@ -3564,6 +3665,11 @@ bool TestBlockValidity(CValidationState& state, const CBlock& block, CBlockIndex
         return false;
     if (!CheckBlock(block, state, fCheckPOW, fCheckMerkleRoot))
         return false;
+	///AAAA
+	if( pindexPrev->nHeight +1 > Params().LAST_POW_BLOCK()){
+    if (!ContextualCheckBlock(block, state, pindexPrev))
+        return false;
+	}
     if (!ConnectBlock(block, state, &indexDummy, viewNew, true))
         return false;
     assert(state.IsValid());
@@ -4242,7 +4348,7 @@ string GetWarnings(string strFor)
     string strRPC;
 
     if (!CLIENT_VERSION_IS_RELEASE)
-        strStatusBar = _("This is a pre-release test build - use at your own risk - do not use for mining or merchant applications");
+        strStatusBar = _("This is a pre-release test build - use at your own risk - do not use for staking or merchant applications!");
 
     if (GetBoolArg("-testsafemode", false))
         strStatusBar = strRPC = "testsafemode enabled";
@@ -4298,7 +4404,7 @@ bool static AlreadyHave(const CInv& inv)
                pcoinsTip->HaveCoins(inv.hash);
     }
     case MSG_DSTX:
-        return mapObfuscationBroadcastTxes.count(inv.hash);
+        return mapDarksendBroadcastTxes.count(inv.hash);
     case MSG_BLOCK:
         return mapBlockIndex.count(inv.hash);
     case MSG_TXLOCK_REQUEST:
@@ -4545,10 +4651,10 @@ void static ProcessGetData(CNode* pfrom)
                 }
 
                 if (!pushed && inv.type == MSG_DSTX) {
-                    if (mapObfuscationBroadcastTxes.count(inv.hash)) {
+                    if (mapDarksendBroadcastTxes.count(inv.hash)) {
                         CDataStream ss(SER_NETWORK, PROTOCOL_VERSION);
                         ss.reserve(1000);
-                        ss << mapObfuscationBroadcastTxes[inv.hash].tx << mapObfuscationBroadcastTxes[inv.hash].vin << mapObfuscationBroadcastTxes[inv.hash].vchSig << mapObfuscationBroadcastTxes[inv.hash].sigTime;
+                        ss << mapDarksendBroadcastTxes[inv.hash].tx << mapDarksendBroadcastTxes[inv.hash].vin << mapDarksendBroadcastTxes[inv.hash].vchSig << mapDarksendBroadcastTxes[inv.hash].sigTime;
 
                         pfrom->PushMessage("dstx", ss);
                         pushed = true;
@@ -4606,14 +4712,8 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         CAddress addrFrom;
         uint64_t nNonce = 1;
         vRecv >> pfrom->nVersion >> pfrom->nServices >> nTime >> addrMe;
-        if (pfrom->nVersion < ActiveProtocol()) {
-            // disconnect from peers older than this proto version
-            LogPrintf("peer=%d using obsolete version %i; disconnecting\n", pfrom->id, pfrom->nVersion);
-            pfrom->PushMessage("reject", strCommand, REJECT_OBSOLETE,
-                strprintf("Version must be %d or greater", ActiveProtocol()));
-            pfrom->fDisconnect = true;
+        if (pfrom->DisconnectOldProtocol(ActiveProtocol(), strCommand))
             return false;
-        }
 
         if (pfrom->nVersion == 10300)
             pfrom->nVersion = 300;
@@ -4947,7 +5047,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                 std::string strMessage = tx.GetHash().ToString() + boost::lexical_cast<std::string>(sigTime);
 
                 std::string errorMessage = "";
-                if (!obfuScationSigner.VerifyMessage(pmn->pubKeyMasternode, vchSig, strMessage, errorMessage)) {
+                if (!DarKsendSigner.VerifyMessage(pmn->pubKeyMasternode, vchSig, strMessage, errorMessage)) {
                     LogPrintf("dstx: Got bad masternode address signature %s \n", vin.ToString());
                     //pfrom->Misbehaving(20);
                     return false;
@@ -4958,14 +5058,14 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                 ignoreFees = true;
                 pmn->allowFreeTx = false;
 
-                if (!mapObfuscationBroadcastTxes.count(tx.GetHash())) {
-                    CObfuscationBroadcastTx dstx;
+                if (!mapDarksendBroadcastTxes.count(tx.GetHash())) {
+                    CDarksendBroadcastTx dstx;
                     dstx.tx = tx;
                     dstx.vin = vin;
                     dstx.vchSig = vchSig;
                     dstx.sigTime = sigTime;
 
-                    mapObfuscationBroadcastTxes.insert(make_pair(tx.GetHash(), dstx));
+                    mapDarksendBroadcastTxes.insert(make_pair(tx.GetHash(), dstx));
                 }
             }
         }
@@ -5110,6 +5210,9 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                     std::string strError = "invalid header received " + header.GetHash().ToString();
                     return error(strError.c_str());
                 }
+
+                //disconnect this node if its old protocol version
+                pfrom->DisconnectOldProtocol(ActiveProtocol(), strCommand);
             }
         }
 
@@ -5159,6 +5262,9 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                     TRY_LOCK(cs_main, lockMain);
                     if (lockMain) Misbehaving(pfrom->GetId(), nDoS);
                 }
+
+                //disconnect this node if its old protocol version
+                pfrom->DisconnectOldProtocol(ActiveProtocol(), strCommand);
             }
         }
 
@@ -5379,11 +5485,11 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         }
     } else {
         //probably one the extensions
-        obfuScationPool.ProcessMessageObfuscation(pfrom, strCommand, vRecv);
+        DarKsendPool.ProcessMessageDarksend(pfrom, strCommand, vRecv);
         mnodeman.ProcessMessage(pfrom, strCommand, vRecv);
         budget.ProcessMessage(pfrom, strCommand, vRecv);
         masternodePayments.ProcessMessageMasternodePayments(pfrom, strCommand, vRecv);
-        ProcessMessageSwiftTX(pfrom, strCommand, vRecv);
+        ProcessMessageInstantX(pfrom, strCommand, vRecv);
         ProcessSpork(pfrom, strCommand, vRecv);
         masternodeSync.ProcessMessage(pfrom, strCommand, vRecv);
     }
@@ -5392,14 +5498,22 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
     return true;
 }
 
+// Note: whenever a protocol update is needed toggle between both implementations (comment out the formerly active one)
+//       so we can leave the existing clients untouched (old SPORK will stay on so they don't see even older clients). 
+//       Those old clients won't react to the changes of the other (new) SPORK because at the time of their implementation
+//       it was the one which was commented out
 int ActiveProtocol()
 {
     if (IsSporkActive(SPORK_14_NEW_PROTOCOL_ENFORCEMENT)) {
-        if (chainActive.Tip()->nHeight >= Params().ModifierUpgradeBlock())
-            return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
+        return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
     }
-
     return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;
+
+/*
+    if (IsSporkActive(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2))
+        return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
+    return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;
+*/
 }
 
 // requires LOCK(cs_vRecvMsg)

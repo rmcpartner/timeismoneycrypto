@@ -13,6 +13,7 @@
 class BitcoinGUI;
 class ClientModel;
 class OverviewPage;
+class Coinmix;
 class ReceiveCoinsDialog;
 class SendCoinsDialog;
 class SendCoinsRecipient;
@@ -60,6 +61,9 @@ private:
     WalletModel* walletModel;
 
     OverviewPage* overviewPage;
+	//AAAA
+	//QWidget* coinmix;
+	Coinmix* coinmix;
     QWidget* transactionsPage;
     ReceiveCoinsDialog* receiveCoinsPage;
     SendCoinsDialog* sendCoinsPage;
@@ -74,6 +78,9 @@ private:
 public slots:
     /** Switch to overview (home) page */
     void gotoOverviewPage();
+	///AAAA
+	/** Switch to overview (home) page */
+    void gotocoinmixPage();
     /** Switch to history (transactions) page */
     void gotoHistoryPage();
     /** Switch to masternode page */
@@ -122,7 +129,7 @@ public slots:
     /** Show progress dialog e.g. for rescan */
     void showProgress(const QString& title, int nProgress);
 
-    /** Update selected TIM amount from transactionview */
+    /** Update selected TimeIsMoney amount from transactionview */
     void trxAmount(QString amount);
 
 signals:

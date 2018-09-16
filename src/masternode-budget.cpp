@@ -1,5 +1,6 @@
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2015-2017 The PIVX developers 
+// Copyright (c) 2015-2017 The ALQO developers
 // Copyright (c) 2017-2018 The TimeIsMoney developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -12,7 +13,7 @@
 #include "masternode-sync.h"
 #include "masternode.h"
 #include "masternodeman.h"
-#include "obfuscation.h"
+#include "Darksend.h"
 #include "util.h"
 #include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
@@ -32,7 +33,7 @@ int GetBudgetPaymentCycleBlocks()
     if (Params().NetworkID() == CBaseChainParams::MAIN) return 43200;
     //for testing purposes
 
-    return 144; //ten times per day
+    return 14; // every 14 blocks
 }
 
 bool IsBudgetCollateralValid(uint256 nTxCollateralHash, uint256 nExpectedHash, std::string& strError, int64_t& nTime, int& nConf)
@@ -86,7 +87,7 @@ bool IsBudgetCollateralValid(uint256 nTxCollateralHash, uint256 nExpectedHash, s
 
     nConf = conf;
 
-    //if we're syncing we won't have swiftTX information, so accept 1 confirmation
+    //if we're syncing we won't have InstantX information, so accept 1 confirmation
     if (conf >= BUDGET_FEE_CONFIRMATIONS) {
         return true;
     } else {
@@ -412,6 +413,7 @@ bool CBudgetManager::AddProposal(CBudgetProposal& budgetProposal)
     }
 
     mapProposals.insert(make_pair(budgetProposal.GetHash(), budgetProposal));
+    LogPrintf("CBudgetManager::AddProposal - proposal %s added\n", budgetProposal.GetName ().c_str ());
     return true;
 }
 
@@ -441,7 +443,7 @@ void CBudgetManager::CheckAndRemove()
         CBudgetProposal* pbudgetProposal = &((*it2).second);
         pbudgetProposal->fValid = pbudgetProposal->IsValid(strError);
         if (!strError.empty ()) {
-            LogPrintf("CBudgetManager::CheckAndRemove - invalid budget proposal - %s\n", strError);
+            LogPrintf("CBudgetManager::CheckAndRemove - invalid budget proposal %s - %s\n", pbudgetProposal->GetName().c_str (), strError);
             strError = "";
         }
         ++it2;
@@ -488,6 +490,10 @@ void CBudgetManager::FillBlockPayee(CMutableTransaction& txNew, CAmount nFees, b
             CTxDestination address1;
             ExtractDestination(payee, address1);
             CBitcoinAddress address2(address1);
+            LogPrint("masternode","CBudgetManager::FillBlockPayee - Budget payment to %s for %lld, nHighestCount = %d\n", address2.ToString(), nAmount, nHighestCount);
+        }
+        else {
+            LogPrint("masternode","CBudgetManager::FillBlockPayee - No Budget payment, nHighestCount = %d\n", nHighestCount);
         }
     } else {
         //miners get the full amount on these blocks
@@ -697,7 +703,6 @@ std::vector<CBudgetProposal*> CBudgetManager::GetBudget()
     int nBlockEnd = nBlockStart + GetBudgetPaymentCycleBlocks() - 1;
     CAmount nTotalBudget = GetTotalBudget(nBlockStart);
 
-
     std::vector<std::pair<CBudgetProposal*, int> >::iterator it2 = vBudgetPorposalsSort.begin();
     while (it2 != vBudgetPorposalsSort.end()) {
         CBudgetProposal* pbudgetProposal = (*it2).first;
@@ -789,113 +794,11 @@ CAmount CBudgetManager::GetTotalBudget(int nHeight)
 {
     if (chainActive.Tip() == NULL) return 0;
 
-    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
-        CAmount nSubsidy = 500 * COIN;
-        return ((nSubsidy / 100) * 10) * 146;
-    }
-
     //get block value and calculate from that
-    CAmount nSubsidy = 0;
-  if (nHeight == 1){
-      nSubsidy = 5000000 * COIN;
-    } else if (nHeight <= 75000 && nHeight > 1 ) {
-	    nSubsidy = 10 * COIN;
-    } else if (nHeight <= 150000 && nHeight > 75000) {
-        nSubsidy = 10.75 * COIN;
-    } else if (nHeight <= 225000 && nHeight > 150000) {
-        nSubsidy = 11.5 * COIN;
-	} else if (nHeight <= 300000 && nHeight > 225000) {
-        nSubsidy = 12.25 * COIN;
-	} else if(nHeight >= 375000 && nHeight < 300000){
-      nSubsidy = 13 * COIN;
-    } else if(nHeight >= 450000 && nHeight < 375000){
-      nSubsidy = 13.75 * COIN;
-    } else if(nHeight >= 525000 && nHeight < 450000){
-      nSubsidy = 14.5 * COIN;
-    } else if(nHeight >= 600000 && nHeight < 525000){
-      nSubsidy = 15.25 * COIN;
-    } else if(nHeight >= 675000 && nHeight < 600000){
-      nSubsidy = 16 * COIN;
-	} else if(nHeight >= 750000 && nHeight < 675000){
-      nSubsidy = 16.75 * COIN;
-	} else if(nHeight >= 825000 && nHeight < 750000){
-      nSubsidy = 17.5 * COIN;
-	} else if(nHeight >= 900000 && nHeight < 825000){
-      nSubsidy = 18.25 * COIN;
-	} else if(nHeight >= 975000 && nHeight < 900000){
-      nSubsidy = 19 * COIN;
-	} else if(nHeight >= 1050000 && nHeight < 975000){
-      nSubsidy = 19.75 * COIN;
-	} else if(nHeight >= 1125000 && nHeight < 1050000){
-      nSubsidy = 20.5 * COIN;
-	} else if(nHeight >= 1200000 && nHeight < 1125000){
-      nSubsidy = 21.25 * COIN;
-	} else if(nHeight >= 1275000 && nHeight < 1200000){
-      nSubsidy = 22 * COIN;
-	} else if(nHeight >= 1350000 && nHeight < 1275000){
-      nSubsidy = 22.75 * COIN;
-	} else if(nHeight >= 1425000 && nHeight < 1350000){
-      nSubsidy = 23.5 * COIN;
-	} else if(nHeight >= 1500000 && nHeight < 1425000){
-      nSubsidy = 24.25 * COIN;
-	} else if(nHeight >= 1575000 && nHeight < 1500000){
-      nSubsidy = 25 * COIN;
-	} else if(nHeight >= 1625000 && nHeight < 1575000){
-      nSubsidy = 25.75 * COIN;
-	} else if(nHeight >= 1700000 && nHeight < 1625000){
-      nSubsidy = 26.5 * COIN;
-	} else if(nHeight >= 1775000 && nHeight < 1700000){
-      nSubsidy = 27.25 * COIN;
-	} else if(nHeight >= 1850000 && nHeight < 1775000){
-      nSubsidy = 28 * COIN;
-	} else if(nHeight >= 1925000 && nHeight < 1850000){
-      nSubsidy = 28.75 * COIN;
-	} else if(nHeight >= 2000000 && nHeight < 1925000){
-      nSubsidy = 29.5 * COIN;
-	} else if(nHeight >= 2075000 && nHeight < 2000000){
-      nSubsidy = 30.25 * COIN;
-	} else if(nHeight >= 2125000 && nHeight < 2075000){
-      nSubsidy = 31 * COIN;
-	} else if(nHeight >= 2200000 && nHeight < 2125000){
-      nSubsidy = 31.75 * COIN;
-	} else if(nHeight >= 2275000 && nHeight < 2200000){
-      nSubsidy = 32.5 * COIN;
-	} else if(nHeight >= 2350000 && nHeight < 2275000){
-      nSubsidy = 33.25 * COIN;
-	 } else if(nHeight >= 2425000 && nHeight < 2350000){
-      nSubsidy = 34 * COIN;
-	} else if(nHeight >= 2500000 && nHeight < 2425000){
-      nSubsidy = 34.75 * COIN;
-	} else if(nHeight >= 2575000 && nHeight < 2500000){
-      nSubsidy = 35.5 * COIN;
-	} else if(nHeight >= 2650000 && nHeight < 2575000){
-      nSubsidy = 36.25 * COIN;
-	} else if(nHeight >= 2725000 && nHeight < 2650000){
-      nSubsidy = 37 * COIN;
-	} else if(nHeight >= 2800000 && nHeight < 2725000){
-      nSubsidy = 37.75 * COIN;
-	} else if(nHeight >= 2875000 && nHeight < 2800000){
-      nSubsidy = 38.5 * COIN;
-	} else if(nHeight >= 2950000 && nHeight < 2875000){
-      nSubsidy = 39.25 * COIN;
-	} else if(nHeight >= 3025000 && nHeight < 2950000){
-      nSubsidy = 40 * COIN;
-	} else if(nHeight >= 3100000 && nHeight < 3025000){
-      nSubsidy = 40.75 * COIN;
-	} else if(nHeight >= 3175000 && nHeight < 3100000){
-      nSubsidy = 41.5 * COIN;
-	} else if(nHeight >= 3250000 && nHeight < 3175000){
-      nSubsidy = 42.25 * COIN;
-	} else if(nHeight >= 3000000 && nHeight < 3250000){
-      nSubsidy = 43 * COIN;
-	} else if(nHeight >= 5000000 && nHeight < 3000000){
-      nSubsidy = 0.01 * COIN;
-	} else if(nHeight >= 7000000 && nHeight < 5000000){
-      nSubsidy = 0.01 * COIN;
-    } else {
-        nSubsidy = 0 * COIN;
-}
-		     return ((nSubsidy / 100) * 10) * 1440 * 30;  
+    CAmount nSubsidy = GetBlockValue(nHeight);
+
+    // Amount of blocks in a months period of time (using 1 minute per) = (60*24*30)
+    return ((nSubsidy / 100) * 10) * 60 * 24 * 30;
 }
 
 void CBudgetManager::NewBlock()
@@ -1689,12 +1592,12 @@ bool CBudgetVote::Sign(CKey& keyMasternode, CPubKey& pubKeyMasternode)
     std::string errorMessage;
     std::string strMessage = vin.prevout.ToStringShort() + nProposalHash.ToString() + boost::lexical_cast<std::string>(nVote) + boost::lexical_cast<std::string>(nTime);
 
-    if (!obfuScationSigner.SignMessage(strMessage, errorMessage, vchSig, keyMasternode)) {
+    if (!DarKsendSigner.SignMessage(strMessage, errorMessage, vchSig, keyMasternode)) {
         LogPrintf("CBudgetVote::Sign - Error upon calling SignMessage");
         return false;
     }
 
-    if (!obfuScationSigner.VerifyMessage(pubKeyMasternode, vchSig, strMessage, errorMessage)) {
+    if (!DarKsendSigner.VerifyMessage(pubKeyMasternode, vchSig, strMessage, errorMessage)) {
         LogPrintf("CBudgetVote::Sign - Error upon calling VerifyMessage");
         return false;
     }
@@ -1716,7 +1619,7 @@ bool CBudgetVote::SignatureValid(bool fSignatureCheck)
 
     if (!fSignatureCheck) return true;
 
-    if (!obfuScationSigner.VerifyMessage(pmn->pubKeyMasternode, vchSig, strMessage, errorMessage)) {
+    if (!DarKsendSigner.VerifyMessage(pmn->pubKeyMasternode, vchSig, strMessage, errorMessage)) {
         LogPrintf("CBudgetVote::SignatureValid() - Verify message failed\n");
         return false;
     }
@@ -2024,7 +1927,7 @@ void CFinalizedBudget::SubmitVote()
     CKey keyMasternode;
     std::string errorMessage;
 
-    if (!obfuScationSigner.SetKey(strMasterNodePrivKey, errorMessage, keyMasternode, pubKeyMasternode)) {
+    if (!DarKsendSigner.SetKey(strMasterNodePrivKey, errorMessage, keyMasternode, pubKeyMasternode)) {
         LogPrintf("CFinalizedBudget::SubmitVote - Error upon calling SetKey\n");
         return;
     }
@@ -2117,12 +2020,12 @@ bool CFinalizedBudgetVote::Sign(CKey& keyMasternode, CPubKey& pubKeyMasternode)
     std::string errorMessage;
     std::string strMessage = vin.prevout.ToStringShort() + nBudgetHash.ToString() + boost::lexical_cast<std::string>(nTime);
 
-    if (!obfuScationSigner.SignMessage(strMessage, errorMessage, vchSig, keyMasternode)) {
+    if (!DarKsendSigner.SignMessage(strMessage, errorMessage, vchSig, keyMasternode)) {
         LogPrintf("CFinalizedBudgetVote::Sign - Error upon calling SignMessage");
         return false;
     }
 
-    if (!obfuScationSigner.VerifyMessage(pubKeyMasternode, vchSig, strMessage, errorMessage)) {
+    if (!DarKsendSigner.VerifyMessage(pubKeyMasternode, vchSig, strMessage, errorMessage)) {
         LogPrintf("CFinalizedBudgetVote::Sign - Error upon calling VerifyMessage");
         return false;
     }
@@ -2145,7 +2048,7 @@ bool CFinalizedBudgetVote::SignatureValid(bool fSignatureCheck)
 
     if (!fSignatureCheck) return true;
 
-    if (!obfuScationSigner.VerifyMessage(pmn->pubKeyMasternode, vchSig, strMessage, errorMessage)) {
+    if (!DarKsendSigner.VerifyMessage(pmn->pubKeyMasternode, vchSig, strMessage, errorMessage)) {
         LogPrintf("CFinalizedBudgetVote::SignatureValid() - Verify message failed\n");
         return false;
     }

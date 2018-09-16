@@ -1,6 +1,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2015-2017 The PIVX developers 
+// Copyright (c) 2015-2017 The ALQO developers
 // Copyright (c) 2017-2018 The TimeIsMoney developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -313,7 +314,7 @@ Value dumpprivkey(const Array& params, bool fHelp)
             "\nReveals the private key corresponding to 'timeismoneyaddress'.\n"
             "Then the importprivkey can be used with this output\n"
             "\nArguments:\n"
-            "1. \"timeismoneyaddress\"   (string, required) The timeismoney address for the private key\n"
+            "1. \"timeismoneyaddress\"   (string, required) The TimeIsMoney address for the private key\n"
             "\nResult:\n"
             "\"key\"                (string) The private key\n"
             "\nExamples:\n" +
@@ -400,7 +401,7 @@ Value bip38encrypt(const Array& params, bool fHelp)
             "bip38encrypt \"timeismoneyaddress\"\n"
             "\nEncrypts a private key corresponding to 'timeismoneyaddress'.\n"
             "\nArguments:\n"
-            "1. \"timeismoneyaddress\"   (string, required) The timeismoney address for the private key (you must hold the key already)\n"
+            "1. \"timeismoneyaddress\"   (string, required) The TimeIsMoney address for the private key (you must hold the key already)\n"
             "2. \"passphrase\"   (string, required) The passphrase you want the private key to be encrypted with - Valid special chars: !#$%&'()*+,-./:;<=>?`{|}~ \n"
             "\nResult:\n"
             "\"key\"                (string) The encrypted private key\n"
