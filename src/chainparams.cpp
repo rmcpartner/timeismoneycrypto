@@ -105,10 +105,10 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // TimeIsMoney: 5 minutes
         nTargetSpacing = 1 * 60;  // TimeIsMoney: 1 minute
-        nLastPOWBlock = 250000;
+        nLastPOWBlock = 500000;
         nMaturity = 60;
         nMasternodeCountDrift = 20;
-		nMasternodeColleteralLimxDev = 1000; //Params().MasternodeColleteralLimxDev()
+		nMasternodeColleteralLimxDev = 10000; //Params().MasternodeColleteralLimxDev()
         nModifierUpdateBlock = 1; // we use the version 2 for dmd
         nMaxMoneyOut = 100000000 * COIN;
         strDeveloperFeePayee = "Tm6XVCfavv71oivysDQkzsnVzT1VHzGJXm";
@@ -144,6 +144,7 @@ public:
 		vSeeds.push_back(CDNSSeedData("91.235.136.218", "91.235.136.218"));
 		vSeeds.push_back(CDNSSeedData("37.1.215.223", "37.1.215.223"));
 		vSeeds.push_back(CDNSSeedData("194.1.236.245", "194.1.236.245"));
+		vSeeds.push_back(CDNSSeedData("37.143.9.174", "37.143.9.174"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 66);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 16);
@@ -166,7 +167,7 @@ public:
         fHeadersFirstSyncingActive = false;
 
         nPoolMaxTransactions = 3;
-        strSporkKey = "04437f8065264326eec6d404a5d4337c4e4e876e0d2f64526392b2a58a8ee15b344f38757ffe0caa3ba2060b7d748c3f5a95509435024eca3d06ff32794404c956";
+        strSporkKey = "043179de0cc1d1f930adfcae1d4a932fad716c03bf5eea5bdb6de09bc7a90ee09ccc2c1d14e98907158311e49b0a79547aba52cd386c47b651023d9e7ab3c23d92";
         strDarksendPoolDummyAddress = "Tm6XVCfavv71oivysDQkzsnVzT1VHzGJXm";
         nStartMasternodePayments = 1519010250;
     }

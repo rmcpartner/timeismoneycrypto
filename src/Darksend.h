@@ -49,7 +49,7 @@ class CActiveMasternode;
 #define DARKSEND_RELAY_SIG 3
 
 static const int64_t DARKSEND_COLLATERAL = (10 * COIN);
-static const int64_t DARKSEND_POOL_MAX = (999.99 * COIN);
+static const int64_t DARKSEND_POOL_MAX = (9999.99 * COIN);
 
 extern CDarksendPool DarKsendPool;
 extern CDarKsendSigner DarKsendSigner;
